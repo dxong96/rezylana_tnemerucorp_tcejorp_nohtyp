@@ -43,7 +43,7 @@ def contractors_browse_clicked(e):
     data_holder.load_contractor_list(path)
 
     if (data_holder.are_sheets_loaded()):
-        # stats = basic_statistics.generate_stats()
+        stats = basic_statistics.generate_stats()
         basic_stats_text.config(state=NORMAL)
         basic_stats_text.insert(END, stats)
         basic_stats_text.config(state=DISABLED)

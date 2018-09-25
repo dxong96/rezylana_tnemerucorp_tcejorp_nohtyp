@@ -37,7 +37,8 @@ def load_procurement_list(path):
 def create_dict_for_list(items, key):
     result = {}
     for item in items:
-        result[getattr(item, key)] = item
+        result.setdefault(getattr(item, key), [])
+        result[getattr(item, key)].append(item)
     return result
 
 def are_sheets_loaded():

@@ -52,3 +52,5 @@ class Procurement:
         else:
             self.awarded = False
             self.supplier_name = None
+
+        self.awarded_amt = float(self.awarded_amt)
