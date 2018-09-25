@@ -20,13 +20,17 @@ def load_contractor_list(path):
 
 
 def load_procurement_list(path):
+    count = 0  #bryan added this in to skip the first row, not sure if correct
     new_procurements = []
     with open(path, 'rb') as f:
         reader = csv.reader(f)
         for row in reader:
-            # check line for commas to ensure
-            procurement = Procurement(row)
-            new_procurements.append(procurement)
+            if count > 0:
+                # check line for commas to ensure
+                procurement = Procurement(row)
+                new_procurements.append(procurement)
+            else:
+                count+=1
         f.close()
     
     global procurements
