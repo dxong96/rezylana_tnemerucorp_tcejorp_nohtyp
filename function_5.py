@@ -58,13 +58,13 @@ def function_5():
     result.append('====')
     result.append('Top 5 companies with the most tenders:')
 
-    top_5_company_name_and_amt = map(lambda company_and_amount: '%s with awarded amount %f' % company_and_amount,
+    top_5_company_name_and_amt = map(lambda company_and_amount: '%s with awarded amount %.2f' % company_and_amount,
                                      top_contractors_and_amount())
     result.extend(top_5_company_name_and_amt)
 
     result.append('====')
-    result.append('Amount awarded to registered contractors: %f' % amount_awarded_to_registered_contractors())
+    result.append('Amount awarded to registered contractors: %.2f' % amount_awarded_to_registered_contractors())
     result.append('====')
-    result.append('Amount awarded unregistered contractors: %f' % amount_awarded_to_unregistered_contractors())
+    result.append('Amount awarded unregistered contractors: %.2f' % amount_awarded_to_unregistered_contractors())
 
     return '\n'.join(result)

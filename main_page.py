@@ -68,9 +68,14 @@ class MainPage(tk.Frame):
         # function3_input_label = tk.Label(function3_input_frame, text="Function 3: ")
         # function3_input_label.grid(row=0, column=0)
 
-        function3_input_button = tk.Button(function_input_frame, text="Function 3")
+        function3_input_button = tk.Menubutton(function_input_frame, text="Function 3", relief=tk.RAISED)
         function3_input_button.grid(row=0, column=1)
-        function3_input_button.bind('<Button-1>', self.function_3_clicked)
+        # function3_input_button.bind('<Button-1>', self.function_3_clicked)
+
+        function3_input_button.menu = tk.Menu(function3_input_button)
+        function3_input_button.menu.add_command(label='Ascending', command=self.function_3_clicked(True))
+        function3_input_button.menu.add_command(label='Descending', command=self.function_3_clicked(False))
+        function3_input_button['menu'] = function3_input_button.menu
 
         # Function 4 List down the awarded vendors which are the registered contractors.
 
@@ -162,19 +167,22 @@ class MainPage(tk.Frame):
             traceback.print_exc()
             MessageDialog(self, "Please select the correct sheet")
 
-
-    def function_2_clicked(self):
+    def function_2_clicked(self, e):
         if not data_holder.are_sheets_loaded():
             MessageDialog(self, "Load contractors and procurements first!")
             return
 
         self.set_output(function_5())
 
-    def function_3_clicked(self, e):
-        if not data_holder.are_sheets_loaded():
-            MessageDialog(self, "Load contractors and procurements first!")
-            return
-        self.set_output(function_3(True))
+    def function_3_clicked(self, asc):
+        def wrapper():
+            if not data_holder.are_sheets_loaded():
+                MessageDialog(self, "Load contractors and procurements first!")
+                return
+
+            self.set_output(function_3(asc))
+        return wrapper
+
 
     def function_4_clicked(self, e):
         if not data_holder.are_sheets_loaded():
