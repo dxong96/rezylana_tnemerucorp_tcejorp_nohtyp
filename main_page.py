@@ -1,5 +1,6 @@
 import Tkinter as tk
 import data_holder
+import traceback
 from tkFileDialog import askopenfilename
 from os import getcwd
 from function_3 import function_3
@@ -146,7 +147,8 @@ class MainPage(tk.Frame):
 
         try:
             data_holder.load_contractor_list(path)
-        except IndexError:
+        except:
+            traceback.print_exc()
             MessageDialog(self, "Please select the correct sheet")
 
     def procurements_browse_clicked(self, e):
@@ -156,7 +158,8 @@ class MainPage(tk.Frame):
 
         try:
             data_holder.load_procurement_list(path)
-        except IndexError:
+        except:
+            traceback.print_exc()
             MessageDialog(self, "Please select the correct sheet")
 
 
