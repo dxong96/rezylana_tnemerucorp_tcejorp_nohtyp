@@ -53,7 +53,7 @@ def amount_awarded_to_unregistered_contractors():
     return amt_awarded_to_unreg
 
 
-def function5():
+def function_5():
     result = []
     result.append('====')
     result.append('Top 5 companies with the most tenders:')

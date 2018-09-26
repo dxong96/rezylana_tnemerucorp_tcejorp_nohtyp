@@ -1,6 +1,6 @@
 from function_3 import function_3
 from function_4 import function_4
-from function_5 import function5
+from function_5 import function_5
 
 def generate_stats():
     result = []
@@ -11,6 +11,6 @@ def generate_stats():
     result.append(function_4())
     result.append("FUNCTION 4 END")
     result.append("FUNCTION 5 START")
-    result.append(function5())
+    result.append(function_5())
     result.append("FUNCTION 5 END")
     return '\n'.join(result)
