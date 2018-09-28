@@ -3,9 +3,13 @@ import data_holder
 import traceback
 from tkFileDialog import askopenfilename
 from os import getcwd
+
+
 from function_3 import function_3
 from function_4 import function_4
 from function_5 import function_5
+from function_7 import function_3
+import function_2
 from message_dialog import MessageDialog
 
 class MainPage(tk.Frame):
@@ -17,7 +21,7 @@ class MainPage(tk.Frame):
         # title START
         title_frame = tk.Frame(self, bd=10, bg="red")
         title_frame.grid(row=0, column=0, columnspan=12, sticky=(tk.W, tk.E))
-        heading = tk.Label(title_frame, text="Welcome to Python Project 2k18", font=("arial", 20, "bold"), fg="red")
+        heading = tk.Label(title_frame, text="Welcome to Python Project 2k18", font=("arial", 20, "bold"), fg="black")
         heading.grid(row=0, column=1)
         title_frame.grid_columnconfigure(0, weight=1)  # fill up empty spaces to left of heading
         title_frame.grid_columnconfigure(2, weight=1)  # fill up empty spaces to right of heading
@@ -74,9 +78,17 @@ class MainPage(tk.Frame):
 
         function3_input_button.menu = tk.Menu(function3_input_button)
         function3_input_button.menu.add_command(label='Ascending', command=self.function_3_clicked(True))
-        function3_input_button.menu.add_command(label='Descending', command=self.function_3_clicked(False))
+        function3_input_button.menu.add_command(label='Descending ', command=self.function_3_clicked(False))
         function3_input_button['menu'] = function3_input_button.menu
 
+        function7_input_button = tk.Menubutton(function_input_frame, text="Function 7", relief=tk.RAISED)
+        function7_input_button.grid(row=0, column=5)
+        # function3_input_button.bind('<Button-1>', self.function_3_clicked)
+
+        function7_input_button.menu = tk.Menu(function7_input_button)
+        function7_input_button.menu.add_command(label='Ascending', command=self.function_7_clicked(True))
+        function7_input_button.menu.add_command(label='Descending ', command=self.function_7_clicked(False))
+        function7_input_button['menu'] = function7_input_button.menu
         # Function 4 List down the awarded vendors which are the registered contractors.
 
         #
@@ -168,11 +180,13 @@ class MainPage(tk.Frame):
             MessageDialog(self, "Please select the correct sheet")
 
     def function_2_clicked(self, e):
+        function_2.createFolder()
+        function_2.writetxt()
+        function_2.txtdetails()
         if not data_holder.are_sheets_loaded():
             MessageDialog(self, "Load contractors and procurements first!")
             return
-
-        self.set_output(function_5())
+        # self.set_output(function_2())
 
     def function_3_clicked(self, asc):
         def wrapper():
@@ -195,6 +209,15 @@ class MainPage(tk.Frame):
             MessageDialog(self, "Load contractors and procurements first!")
             return
         self.set_output(function_5())
+
+    def function_7_clicked(self, asc):
+        def wrapper():
+            if not data_holder.are_sheets_loaded():
+                MessageDialog(self, "Load contractors and procurements first!")
+                return
+
+            self.set_output(function_3(asc))
+        return wrapper
 
     def function_6_clicked(self, e):
         if not data_holder.are_sheets_loaded():
