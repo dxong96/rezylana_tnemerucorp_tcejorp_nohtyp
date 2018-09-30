@@ -1,31 +1,36 @@
-import data_holder
 import os
+import csv
+import shutil
 
-
-def createFolder():
-    test = './new python2/'
+def Create_Folder():
+    folder = './Govern Procurement/'
     try:
-        if not os.path.exists(test):
-            os.makedirs(test)
+        if not os.path.exists(folder):
+            os.makedirs(folder)
     except OSError:
-        print ('Error: Creating directory. ' + test)
+        print ('Error: Creating directory. ' + folder)
 
-agencylist = []
-# Example
-def writetxt():
-    for i in agencylist:
-        file = open(os.path.join(test,i+".txt", "w"))
-        file.write(i)
-        file.write("This is our next text file")
-        file.write("and this is anotherline.")
-        file.write("Why? Because we can.")
+def Export_CSV_Data_To_Txt():
+    with open ('government-procurement-via-gebiz.csv','r') as csv_file1:
+        # fields = [] #initializing
 
-        file.close()
+        csv_read = csv.reader(csv_file1) #creating csv reader object
+        # extracting field through first row
+        # fields = csv_reader.next()
 
+        #write to txt file
+        with open('government-procurement-via-gebiz_new.txt', 'w')as csv_file2:
+            csv_write = csv.writer(csv_file2, delimiter='\t')
+            for items in csv_read:
+                csv_write.writerow(items)
 
-def txtdetails():
-    agency_to_procurements = data_holder.create_dict_for_list(data_holder.procurements, 'agency')
-    for agency in agency_to_procurements:
-        agencylist.append(agency)
-        # print agency
+        csv_file1.close()
 
+def Save_To_Folder():
+
+    src = os.listdir(r"C:\Users\jia_f\Downloads\rezylana_tnemerucorp_tcejorp_nohtyp-master")
+    destination = r"C:\Users\jia_f\Downloads\rezylana_tnemerucorp_tcejorp_nohtyp-master\Govern Procurement"
+
+    for files in src:
+        if files.endswith("government-procurement-via-gebiz_new.txt"):
+            shutil.move(files,destination)
