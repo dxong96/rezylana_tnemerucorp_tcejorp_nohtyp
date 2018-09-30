@@ -41,7 +41,7 @@ class Workhead:
         self.grade = grade
         self.category_abbreviation = self.workhead[0:2]
 
-    def workhead_title(self):
+    def workhead_category_title(self):
         return WORKHEAD_CATEGORIES[self.category_abbreviation]
 
     # according to https://www.bca.gov.sg/ContractorsRegistry/contractors_tendering_limits.html
@@ -54,11 +54,18 @@ class Workhead:
             return -1
 
 
+    def display_text(self):
+        return workhead_display_text(self.workhead)
 
-def get_contractors_by_industry_abbreviation(industry_abbreviation):
-    contractors = []
-    for c in data_holder.contractors:
-        if c.is_in_industry(industry_abbreviation):
-            contractors.append(c)
 
-    return contractors
+def workhead_display_text(workhead):
+    result = []
+    workhead_info = data_holder.contractor_registry[workhead]
+    result.append('\tWorkhead:')
+    result.append("\t%s" % workhead)
+    result.append('\tTitle:')
+    result.append("\t%s" % workhead_info["title"])
+    result.append('\tDescription:')
+    result.append("\t%s" % workhead_info["description"])
+
+    return '\n'.join(result)

@@ -3,6 +3,7 @@ import data_holder
 import traceback
 from tkFileDialog import askopenfilename
 from os import getcwd
+from workheads_page import WorkheadsPage
 
 
 from function_3 import procurement_dictionary1,total_procurement_dictionary1,sorted_total_procurement_dictionary1
@@ -13,7 +14,6 @@ from message_dialog import MessageDialog
 from function_7 import procurement_dictionary1,total_procurement_dictionary1,agency_no,average_procurement1,sorted_average_procurement
 from function_8 import procurement_dictionary1,total_procurement_dictionary1,agency_max_procurement,sorted_max_procurement
 from function_9 import procurement_dictionary1,total_procurement_dictionary1,agency_min_procurement,sorted_min_procurement
-from function_10 import contractor_workhead_grade
 from function_11 import sort_date_time1,sort_by_expired_date1
 
 class MainPage(tk.Frame):
@@ -142,12 +142,7 @@ class MainPage(tk.Frame):
         # Function 10
         function10_input_button = tk.Menubutton(function_input_frame, text="Function 10", relief=tk.RAISED)
         function10_input_button.grid(row=0, column=8)
-        # function10_input_button.bind('<Button-1>', self.function_10_clicked)
-
-        function10_input_button.menu = tk.Menu(function10_input_button)
-        function10_input_button.menu.add_command(label='Ascending', command=self.function_10_clicked(True))
-        function10_input_button.menu.add_command(label='Descending', command=self.function_10_clicked(False))
-        function10_input_button['menu'] = function10_input_button.menu
+        function10_input_button.bind('<Button-1>', self.function_10_clicked)
 
         # Function 11
         function11_input_button = tk.Menubutton(function_input_frame, text="Function 11", relief=tk.RAISED)
@@ -183,6 +178,7 @@ class MainPage(tk.Frame):
         """
         basic_stats_text.config(yscrollcommand=basic_stats_text_scroll.set)
         # basic statistics END
+        data_holder.load_contractor_registry()
 
     def prompt_sheet_location(self):
         current_working_directory = getcwd()  # where the code is ran from
@@ -225,6 +221,7 @@ class MainPage(tk.Frame):
         if not data_holder.are_sheets_loaded():
             MessageDialog(self, "Load contractors and procurements first!")
             return
+        print len(data_holder.contractors)
         # self.set_output(function_2())
 
     def function_3_clicked(self, asc):
@@ -304,14 +301,12 @@ class MainPage(tk.Frame):
             self.set_output(sorted_min_procurement(asc))
         return wrapper
 
-    def function_10_clicked(self, asc):
-        def wrapper():
-            if not data_holder.are_sheets_loaded():
-                MessageDialog(self, "Load contractors and procurements first!")
-                return
+    def function_10_clicked(self, e):
+        if not data_holder.are_sheets_loaded():
+            MessageDialog(self, "Load contractors and procurements first!")
+            return
 
-            self.set_output(contractor_workhead_grade())
-        return wrapper
+        WorkheadsPage(self)
 
     def function_11_clicked(self, asc):
         def wrapper():

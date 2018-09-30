@@ -305,13 +305,18 @@
     "description": "Metalwork,  ironmongery,  ornamental  works,  grating,  grills  and  other  metal architectural works."
   },
   {
-    "workhead": "",
-    "title": "",
-    "description": ""
+    "workhead": "RW01",
+    "title": "Window Contractors",
+    "description": "Installation and retrofitting of windows. Firms under this workhead are required to have at least 2 trained window installers with certificate of attendance on Safety of Windows issued by HDB."
   },
   {
-    "workhead": "",
-    "title": "",
-    "description": ""
+    "workhead": "RW02",
+    "title": "Lift Contractors",
+    "description": "(i)Installation, commissioning, examination, inspection and testing of lifts\n(ii) Maintenance of lifts"
+  },
+  {
+    "workhead": "RW03",
+    "title": "Escalator Contractors",
+    "description": "(i) Installation, commissioning, examination, inspection and testing of escalators\n(ii) Maintenance of escalators "
   }
 ]

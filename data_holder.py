@@ -5,7 +5,7 @@ from classes import Procurement
 
 contractors = []
 procurements = []
-contractor_registry = False
+contractor_registry = {}
 
 def load_contractor_list(path):
     contractor_dict = {}
@@ -61,5 +61,4 @@ def load_contractor_registry():
     for registry in json_result:
         result[registry["workhead"]] = registry
     contractor_registry = result
-    print contractor_registry
 

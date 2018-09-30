@@ -33,11 +33,45 @@ class Contractor:
         industry = Workhead(workhead, grade)
         self.workheads.add(industry)
 
-    def is_in_industry(self, industry_abbreviation):
-        for industry in self.workheads:
-            if industry.industry_abbreviation == industry_abbreviation:
+    def is_in_workhead_category(self, category_abbreviation):
+        for workhead in self.workheads:
+            if workhead.category_abbreviation == category_abbreviation:
                 return True
         return False
+
+    def is_in_workhead(self, workhead):
+        for wh in self.workheads:
+            if wh.workhead == workhead:
+                return True
+        return False
+
+    def display_text(self):
+        result = ["Company name:"]
+        result.append(self.company_name)
+        result.append("Uen No:")
+        result.append(self.uen_no)
+        result.append("Additional Information:")
+        result.append(self.additional_info)
+        result.append("Expiry Date:")
+        result.append(self.expiry_date)
+        result.append("Address:")
+        result.append(self.building_no)
+        result.append(self.street_name)
+
+        if self.unit_no != 'na':
+            result.append(self.unit_no)
+
+        if self.building_name != 'na':
+            result.append(self.building_name)
+        result.append('S(%s)' % self.postal_code)
+        result.append('Contact No:')
+        result.append(self.tel_no)
+
+        result.append('Workheads:')
+        result.extend(map(lambda w: w.display_text(), self.workheads))
+
+        return '\n'.join(result)
+
 
 
 
