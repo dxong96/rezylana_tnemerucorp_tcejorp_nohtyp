@@ -11,9 +11,9 @@ def procurement_dictionary1():
     signify_end="------END OF CURRENT DATA------"
     total_count=0
     for procurement in data_holder.procurements:
-            # this is so the first row which are all headers arent used
-            procurement_dictionary.setdefault(procurement.agency,[]).append(round(float(procurement.awarded_amt),2))
-            #creating a dictionary where the values to a key is stored in a list, so for each similar string the value will be appended to that list.
+        # this is so the first row which are all headers arent used
+        procurement_dictionary.setdefault(procurement.agency,[]).append(round(float(procurement.awarded_amt),2))
+        #creating a dictionary where the values to a key is stored in a list, so for each similar string the value will be appended to that list.
     for rows,value in procurement_dictionary.iteritems():
         total_count +=1
         string_rep = string_rep+"\n"+str(total_count) +") " + rows + ": " +str(value)
