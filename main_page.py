@@ -1,6 +1,7 @@
 import Tkinter as tk
 import data_holder
 import traceback
+from threading import Thread
 from tkFileDialog import askopenfilename
 from os import getcwd
 from workheads_page import WorkheadsPage
@@ -18,6 +19,7 @@ from function_11 import sort_date_time1,sort_by_expired_date1
 
 class MainPage(tk.Frame):
     output_text = False
+    threads = []
 
     def __init__(self, parent):
         tk.Frame.__init__(self, parent)
@@ -180,6 +182,14 @@ class MainPage(tk.Frame):
         # basic statistics END
         data_holder.load_contractor_registry()
 
+        # start loading contractor registry
+        contractor_registry_thread = Thread(target=data_holder.load_contractor_registry)
+        contractor_registry_thread.start()
+        self.threads.append(contractor_registry_thread)
+
+        parent.protocol("WM_DELETE_WINDOW", self.on_closing)
+        # end loading contractor registry
+
     def prompt_sheet_location(self):
         current_working_directory = getcwd()  # where the code is ran from
         filename = askopenfilename(initialdir=current_working_directory, title="Select sheet",
@@ -319,3 +329,9 @@ class MainPage(tk.Frame):
         return wrapper
 
     ''' Click listeners END '''
+
+    def on_closing(self):
+        # wait for loading contractor registry thread to end
+        for thread in self.threads:
+            thread.join()
+        self.quit()
