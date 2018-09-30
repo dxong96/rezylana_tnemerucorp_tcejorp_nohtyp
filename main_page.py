@@ -332,7 +332,7 @@ class MainPage(tk.Frame):
             self.set_output(sort_by_expired_date1(asc))
         return wrapper
 
-     def function_12_clicked(self, asc):
+    def function_12_clicked(self, asc):
         def wrapper():
             if not data_holder.are_sheets_loaded():
                 MessageDialog(self, "Load contractors and procurements first!")
