@@ -33,7 +33,7 @@ class MainPage(tk.Frame):
 
         contractors_input_button = tk.Button(contractors_input_frame, text="Browse")
         contractors_input_button.grid(row=0, column=1)
-        contractors_input_button.bind('<Button-1>', self.contractors_browse_clicked)
+        contractors_input_button.bind('<Button-1>', self.handle_sheet_loading(data_holder.load_contractor_list))
         # contractors sheet input END
 
         # procurements sheet input START
@@ -45,7 +45,7 @@ class MainPage(tk.Frame):
 
         gov_procurements_input_button = tk.Button(gov_procurements_input_frame, text="Browse")
         gov_procurements_input_button.grid(row=0, column=1)
-        gov_procurements_input_button.bind('<Button-1>', self.procurements_browse_clicked)
+        gov_procurements_input_button.bind('<Button-1>', self.handle_sheet_loading(data_holder.load_procurement_list))
         # procurements sheet input END
 
         # Function 1
@@ -145,27 +145,19 @@ class MainPage(tk.Frame):
 
     ''' Click listeners START '''
 
-    def contractors_browse_clicked(self, e):
-        path = self.prompt_sheet_location()
-        if path == '':
-            return
+    def handle_sheet_loading(self, func):
+        def inner_func(e):
+            path = self.prompt_sheet_location()
+            if path == '':
+                return
 
-        try:
-            data_holder.load_contractor_list(path)
-        except:
-            traceback.print_exc()
-            MessageDialog(self, "Please select the correct sheet")
+            try:
+                func(path)
+            except:
+                traceback.print_exc()
+                MessageDialog(self, "Please select the correct sheet")
 
-    def procurements_browse_clicked(self, e):
-        path = self.prompt_sheet_location()
-        if path == '':
-            return
-
-        try:
-            data_holder.load_procurement_list(path)
-        except:
-            traceback.print_exc()
-            MessageDialog(self, "Please select the correct sheet")
+        return inner_func
 
     def function_2_clicked(self, e):
         if not data_holder.are_sheets_loaded():

@@ -1,0 +1,317 @@
+[
+  {
+    "workhead": "CW01",
+    "title": "General Building",
+    "description": "All types of building works in connection with any structure, being built or to be built, for the support, shelter and enclosure of persons, animals, chattels or movable property of any kind, requiring in its construction the use of more than two unrelated building trades and crafts. Such structure includes the construction of multi-storey car-parks, buildings for parks and playgrounds and other recreational works, industrial plants, and utility plants. \nAddition and alteration works on buildings involving structural changes.\nInstallation of roofs. Firms which undertake waterproofing work should register under CR13."
+  },
+  {
+    "workhead": "CW02",
+    "title": "Civil Engineering",
+    "description": "Works involving concrete, masonry and steel in bridges, sewers, culverts, reservoirs, retaining walls, canals, drainage systems, underground structures, cutting and filling of embankment, river banks, excavation of deep trenches, scraping of sub-soil, surface drainage works, flexible pavement, rigid pavement or laterite roads, bus bays, open car-parks and related works such as kerbs and footways. Firms which undertake piling works, ground support and stabilization works or site investigation works should register under CR08, CR12 and CR15 respectively.\nWorks involving dredging in canal, river and offshore for the purpose of deepening and extraction of mineral or construction material. It also includes reclamation works.\nWorks involving marine piling and the construction of marine structures such as jetties, wharves, sea and river walls. The head does not cover the construction and fabrication of marine crafts, pontoons and oilrigs or any floating platform."
+  },
+  {
+    "workhead": "ME01",
+    "title": "Air-conditioning, Refrigeration & Ventilation Works",
+    "description": "The installation, commissioning, maintenance and repairs of air-conditioning, refrigeration, cold rooms, and ventilation systems."
+  },
+  {
+    "workhead": "ME02",
+    "title": "Building Automation, Industrial & Process, Control Systems",
+    "description": "Installation and maintenance of microprocessor or computer based building control systems (e.g. integrated environmental control, fire and security computer control system), industrial process control systems. Firms involved in supply of control instruments and equipment should register themselves under SY05."
+  },
+  {
+    "workhead": "ME03",
+    "title": "Solar PV and System Integration",
+    "description": "Installation, testing, commissioning, maintenance and repair of ground / building-mounted grid-connected solar PV systems for electricity generation."
+  },
+  {
+    "workhead": "ME04",
+    "title": "Communication & Security Systems",
+    "description": "Installation and maintenance of communications system (e.g. intercom & wireless radio) and security systems (e.g. CCTV, security alarm, car park security control and card access system). \nInstallation and maintenance of Central Antenna Television (CATV) systems."
+  },
+  {
+    "workhead": "ME05",
+    "title": "Electrical Engineering",
+    "description": "ME05 Electrical Engineering The installation, testing, commissioning, maintenance and repair of electrical based systems such as switchgears, transformers and large generators. It also includes the electrical installations (e.g. lightings) in building and marine vessels. Suppliers should register under the relevant SY04 or SY05."
+  },
+  {
+    "workhead": "ME06",
+    "title": "Fire Prevention & Protection Systems",
+    "description": "Installation and maintenance of fire alarm, prevention and protection systems. This head may include the supply of fire extinguishers and fire hoses if these items are part and parcel of the system installation or maintenance contract. Supplier of fire extinguishers and fire hoses should register under Government Supplier Registration at https://www.gebiz.gov.sg/"
+  },
+  {
+    "workhead": "ME07",
+    "title": "High & Low Tension Overhead Line Installation",
+    "description": "(a) Installation and maintenance of low and high-tension overhead cables. Installation and maintenance of street lighting. Installation and maintenance of poles for overhead cable and street lighting."
+  },
+  {
+    "workhead": "ME08",
+    "title": "Internal Telephone Wiring for Telecommunications",
+    "description": "Wiring work within a building for telecommunications purposes. Applicants must possess a valid IDA telecommunication wiring contractor’s licence."
+  },
+  {
+    "workhead": "ME09",
+    "title": "Lift & Escalator Installation",
+    "description": "This covers the installation, commissioning and maintenance of lifts, escalators and travellators. Applicants carrying out installation, commissioning and maintenance of lifts or escalators are also required to obtain RW02 (Lift Contractors) or RW03 (Escalator Contractors) respectively."
+  },
+  {
+    "workhead": "ME10",
+    "title": "Line Plant Cabling / Wiring for Telecommunications",
+    "description": "Laying of underground telecommunication cables."
+  },
+  {
+    "workhead": "ME11",
+    "title": "Mechanical Engineering",
+    "description": "ME11 Mechanical Engineering The installation, commissioning, maintenance and repair of mechanical plant, machinery and systems. It includes the installation and maintenance of power generation and turbine systems. Suppliers should register under SY08 or SY09."
+  },
+  {
+    "workhead": "ME12",
+    "title": "Plumbing  & Sanitary Works",
+    "description": "Installation, repairs and servicing of water and gas pipes, sanitary works and plumbing fixtures. Applicants must possess a valid PUB Water Service Plumber Licence, EMA Gas Service Worker Licence or SPS Plumber Licence."
+  },
+  {
+    "workhead": "ME13",
+    "title": "Traffic Light Systems",
+    "description": "Installation and maintenance of traffic light systems."
+  },
+  {
+    "workhead": "ME15",
+    "title": "Integrated Building Services",
+    "description": "The installation, commissioning, maintenance and repairs of building services (including prefabricated MEP modules), which include some or all of the following: ME01, ME02, ME04, ME05, ME06, ME08, ME11, and ME12. (please refer to the registration requisites in Appendix B, Table B3)"
+  },
+  {
+    "workhead": "CR01",
+    "title": "Minor Construction Works",
+    "description": "Minor building and civil engineering works that are not governed by the Building Control Act such as drainage, minor road works, aprons and minor A & A."
+  },
+  {
+    "workhead": "CR02",
+    "title": "Corrosion Protection",
+    "description": "Corrosion protection work on metal surfaces and structures. Includes processes such as cathodic, anodic, and electrolytic protection."
+  },
+  {
+    "workhead": "CR03",
+    "title": "Demolition",
+    "description": "This head covers all general demolition works. Since no financial grade is given to this registration head, applicants must meet the L1 requirements and complete at least ONE demolition project as a prerequisite for registration."
+  },
+  {
+    "workhead": "CR04",
+    "title": "Fencing & Ironworks",
+    "description": "Erection of perimeter fences and gates."
+  },
+  {
+    "workhead": "CR05",
+    "title": "Concrete Repairs",
+    "description": "This head covers the reinforcement of structures and joints through the use of cement-sand-mortar mix or the injection of slurry into joints and cracks in concrete structures and the application of spraying of cement-sand mortar onto surfaces of reinforced concrete works."
+  },
+  {
+    "workhead": "CR06",
+    "title": "Interior  Decoration, & Finishing Works",
+    "description": "Interior design, planning and the decoration of buildings. This includes ceiling panels, partitions, built-in fitments, raised floor works, plastering and tiling."
+  },
+  {
+    "workhead": "CR07",
+    "title": "Cable/Pipe Laying & Road Reinstatement",
+    "description": "Installation of underground cables/pipes and the subsequent reinstatement of roads and other surfaces including detection of underground services. Firms specializing in supplying the cables should register under SY05. Firms specialized in supplying pipes should register under SY12."
+  },
+  {
+    "workhead": "CR08",
+    "title": "Piling Works",
+    "description": "Installation and testing of precast reinforced concrete or prestressed concrete piles, steel piles, bored cast-in-place piles, caissons and special types like micro-piles, barettes piles and composite piles, embedded retaining wall piles like diaphragm walls, contiguous bored piles or secant piles. Applicants applying for L6 must own at least 4piling rigs and executed a piling project of at least $3million on its own. Applicants are required to obtain the Specialist Builder Piling Works Licence SB(PW)."
+  },
+  {
+    "workhead": "CR09",
+    "title": "Repairs & Redecoration",
+    "description": "Repainting and minor non-structural repair of buildings and existing structures. These works should not include addition & alteration works involving structural changes."
+  },
+  {
+    "workhead": "CR10",
+    "title": "Precast Concrete Works",
+    "description": "Fabrication and installation of precast concrete products including slabs, panels and beams. Applicants are required to obtain either theSpecialist Builder Precast Concrete Work Licence SB(PC) or the Specialist Builder In-situ Post-Tensioning Work Licence SB(PT)"
+  },
+  {
+    "workhead": "CR11",
+    "title": "Signcraft Installation",
+    "description": "Planning and installation of an integrated signposting system for complexes, airports, shopping centres. It includes the setting up of exhibition stands and signs along roads."
+  },
+  {
+    "workhead": "CR12",
+    "title": "Ground Support & Stabilisation Works",
+    "description": "Ground support and stabilisation works, including installation and testing of ground anchors, soil nails, rock bolts, ground treatment like chemical grouting and jet-grouting, reinforced-earth, shotcreting and tunnel supports. Applicants are required to obtain Specialist Builder Ground Support Works and Stabilization Works Licence SB(GS)"
+  },
+  {
+    "workhead": "CR13",
+    "title": "Waterproofing Installation",
+    "description": "Waterproofing of basements, roofs and walls. Firms which undertake only roofing works should register under CW01."
+  },
+  {
+    "workhead": "CR14",
+    "title": "Asphalt Works & Road Marking",
+    "description": "Supply and laying of asphalt, marking and painting of roads. Applicants are required to have asphalt plant, vibratory roller and bituminous pavers. "
+  },
+  {
+    "workhead": "CR15",
+    "title": "Site Investigation Works",
+    "description": "Site investigation work comprising field investigations, exploratory drilling or boring, logging, sampling, coring, in-situ plate-loading tests, pressure meter tests, penetration tests, vane shear tests, probing tests, permeability tests, geological mapping and geophysical surveys, and installation and monitoring of instruments measuring forces, deformation, displacements, pore and earth pressures, and ground-water levels. Applicants are required to obtain Specialist Builder Site Investigation Work Licence SB(SI)"
+  },
+  {
+    "workhead": "CR16",
+    "title": "Curtain Walls",
+    "description": "Supply and installation of curtain walls and all types of aluminium and glazing works."
+  },
+  {
+    "workhead": "CR17",
+    "title": "Windows",
+    "description": "Supply and installation of windows. Applicants are required to obtain the Regulatory Workhead, RW01."
+  },
+  {
+    "workhead": "CR18",
+    "title": "Doors",
+    "description": "Supply and installation of doors and ironmongery."
+  },
+  {
+    "workhead": "MW02",
+    "title": "Housekeeping, Cleansing, Desilting & Conservancy Services",
+    "description": "Includes cleaning and housekeeping services for offices, buildings, compounds, industrial and commercial complexes, desilting and cleansing of drains and grasscutting."
+  },
+  {
+    "workhead": "MW03",
+    "title": "Landscaping",
+    "description": "Provision of landscaping services including tree planting and turfing."
+  },
+  {
+    "workhead": "MW04",
+    "title": "Pest Control",
+    "description": "Extermination and control of pests in installations, buildings and complexes."
+  },
+  {
+    "workhead": "SY01A",
+    "title": "Essential Construction Materials under PartVIA of BCA Act",
+    "description": "Supply of essential construction materials under Part VIA of BCA Act and its subsidiary legislation such as sand and granite aggregates. Requires import licence for essential construction materials issued by BCA."
+  },
+  {
+    "workhead": "SY01B",
+    "title": "Ready-Mixed Concrete",
+    "description": "Supply of ready-mixed concrete. Requires Certificate of Conformity for Ready-Mixed Concrete issued by SAC"
+  },
+  {
+    "workhead": "SY01C",
+    "title": "Other Basic Construction Materials",
+    "description": "Supply of other construction materials such as bricks, cement, timber, reinforcement bars and pre-cast products. Requires agency rights"
+  },
+  {
+    "workhead": "SY02",
+    "title": "Chemicals",
+    "description": "Supply of all forms of chemicals including pollution dispersal chemicals, hardening compounds, adhesives solvents and paints."
+  },
+  {
+    "workhead": "SY04",
+    "title": "Electrical Equipment",
+    "description": "Supply of heavy electrical equipment such as switchgears and transformers. Firms must have facilities and personnel to provide maintenance back up services for the equipment supplied"
+  },
+  {
+    "workhead": "SY05",
+    "title": "Electrical & Electronic Materials, Products & Components",
+    "description": "Supply of electrical and electronic products and materials such as batteries, electrical cables and wires, lightings, and includes control and measuring instruments."
+  },
+  {
+    "workhead": "SY06",
+    "title": "Finishing & Building Products",
+    "description": "Supply of all finishing & building products such as carpets, tiles, ceiling boards, awnings, blinds, wallpapers, non-structural precast products"
+  },
+  {
+    "workhead": "SY07",
+    "title": "Gases",
+    "description": "Supply of gases including oxygen, nitrogen, hydrogen, nitrous oxide, chlorine, carbon dioxide and oxyacetylene gases."
+  },
+  {
+    "workhead": "SY08",
+    "title": "Mechanical Equipment, Plant & Machinery",
+    "description": "Supply of mechanical plants and equipment including generators, air compressors, pumps, lathes, boilers, bulldozers, cement mixers, cranes, gondola systems turbinesand earthwork vehicles. Weapons are excluded. Firms should possess facilities and personnel to provide maintenance and back-up services"
+  },
+  {
+    "workhead": "SY09",
+    "title": "",
+    "description": "Supply of mechanical materials, products and components including ferrous and non-ferrous castings, machine tools, rollers, conveyor belts, valves and spare parts for mechanical equipment."
+  },
+  {
+    "workhead": "SY10",
+    "title": "Metal and Timber Structures",
+    "description": "Supply of aluminum, steel, steel alloy and timber structural components, metal scaffolds."
+  },
+  {
+    "workhead": "SY11",
+    "title": "Petroleum Products",
+    "description": "Supply of all petroleum products and by-products including lubricants, bunker oil, diesel, gasoline and greases. Equivalent synthetic product suppliers can also be considered for registration."
+  },
+  {
+    "workhead": "SY12",
+    "title": "Pipes",
+    "description": "Supply of all forms of pipes made of steel, concrete, PVC or their combination."
+  },
+  {
+    "workhead": "SY14",
+    "title": "Sanitary Products",
+    "description": "Supply of sanitary fittings including washing basins, bidets, toilet bowls and bathtubs. Supplier of pipes should be registered under SY12"
+  },
+  {
+    "workhead": "TR01",
+    "title": "Formwork",
+    "description": "Formwork, strutting and support systems  including  system  formwork, table-form,slip-form, falsework(scaffolding)and the like."
+  },
+  {
+    "workhead": "TR02",
+    "title": "Steel Reinforcement Work",
+    "description": "Steel    reinforcement    works    including    bar    cutting,    bar    bending,    steel reinforcement   fabrication   (on   and   off   site)   and   bar   /   prefabricated   steel reinforcement placement on site."
+  },
+  {
+    "workhead": "TR03",
+    "title": "Concreting Work",
+    "description": "Concreting to all structures including building and civil engineering works."
+  },
+  {
+    "workhead": "TR04",
+    "title": "Drywall Installation",
+    "description": "Installation of drywall"
+  },
+  {
+    "workhead": "TR05",
+    "title": "Pre-cast Installation",
+    "description": "Erection of pre-cast concrete component"
+  },
+  {
+    "workhead": "TR06",
+    "title": "Ceiling Work",
+    "description": "Ceiling works  including  plasterboard,  metal  ceiling  and  other  ceiling  systems, suspended or non-suspended."
+  },
+  {
+    "workhead": "TR07",
+    "title": "Tile/Marble/Stone Work",
+    "description": "All types of wall and floor finishing works with tile / marble / stone finishes."
+  },
+  {
+    "workhead": "TR08",
+    "title": "Timber, Vinyl and Laminate Flooring Work",
+    "description": "All types of timber, vinyl and laminate flooring works."
+  },
+  {
+    "workhead": "TR09",
+    "title": "Plastering / Skimming",
+    "description": "Plastering/skimming wall finishes."
+  },
+  {
+    "workhead": "TR10",
+    "title": "Ironmongery & Metalwork",
+    "description": "Metalwork,  ironmongery,  ornamental  works,  grating,  grills  and  other  metal architectural works."
+  },
+  {
+    "workhead": "",
+    "title": "",
+    "description": ""
+  },
+  {
+    "workhead": "",
+    "title": "",
+    "description": ""
+  }
+]
