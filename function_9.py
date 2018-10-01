@@ -10,6 +10,7 @@ def agency_min_procurement():
     string_rep="Data recorded below indicates the minimum procurement amount for each agency:"
     count=0
     signify_end="------END OF CURRENT DATA------"
+    function_3.procurement_dictionary1()
     for k,v in function_3.procurement_dictionary.iteritems():
         combined_string= ",".join(str(number) for number in function_3.procurement_dictionary[k])
         store_min=(combined_string).split(",")
