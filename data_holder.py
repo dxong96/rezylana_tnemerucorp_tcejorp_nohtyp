@@ -6,8 +6,12 @@ from classes import Procurement
 contractors = []
 procurements = []
 contractor_registry = {}
+contractors_source_path = None
+procurements_source_path = None
 
 def load_contractor_list(path):
+    global contractors_source_path
+    contractors_source_path = path
     contractor_dict = {}
     with open(path, 'rb') as f:
         reader = csv.DictReader(f)
@@ -15,7 +19,7 @@ def load_contractor_list(path):
             company_name = row['company_name']
             if company_name in contractor_dict:
                 contractor = contractor_dict[company_name]
-                contractor.add_workhead(row['workhead'], row['grade'], row['expiry_date'])
+                contractor.add_workhead(row['workhead'], row['grade'])
             else:
                 contractor = Contractor(row)
                 contractor_dict[company_name] = contractor
@@ -28,6 +32,8 @@ def load_contractor_list(path):
 
 
 def load_procurement_list(path):
+    global procurements_source_path
+    procurements_source_path = path
     new_procurements = []
     with open(path, 'rb') as f:
         reader = csv.reader(f)
