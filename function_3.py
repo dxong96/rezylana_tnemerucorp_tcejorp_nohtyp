@@ -1,32 +1,25 @@
 import data_holder,csv,operator
 
-procurement1="C:/Users/bry/Downloads/Project Datasets/government-procurement/government-procurement-via-gebiz.csv"
+
 procurement_dictionary ={}
 total_procurement_dictionary={}
 
 def procurement_dictionary1():
-    count=0
+    global procurement_dictionary
+    procurement_dictionary={}
     string_rep = "Data recorded below indicates the individual procurement amount for each agency:"
     signify_end="------END OF CURRENT DATA------"
-    global procurement_dictionary
-    with open(procurement1,"r") as csvfile:
-        reader=csv.reader(csvfile)
-        #read allow me to call my line and specify the row
-        count =0
-        total_count=0
-        for line in reader:
-            if count > 0:
-                # this is so the first row which are all headers arent used
-                procurement_dictionary.setdefault(line[1],[]).append(round(float(line[6]),2))
-                #creating a dictionary where the values to a key is stored in a list, so for each similar string the value will be appended to that list.
-            else:
-                count +=1
-        for rows,value in procurement_dictionary.iteritems():
-            total_count +=1
-            string_rep = string_rep+"\n"+str(total_count) +") " + rows + ": " +str(value)
-            if total_count == len(procurement_dictionary):
-                string_rep = string_rep +"\n" + "%050s" %(signify_end)
-                return string_rep
+    total_count=0
+    for procurement in data_holder.procurements:
+        # this is so the first row which are all headers arent used
+        procurement_dictionary.setdefault(procurement.agency,[]).append(round(float(procurement.awarded_amt),2))
+        #creating a dictionary where the values to a key is stored in a list, so for each similar string the value will be appended to that list.
+    for rows,value in procurement_dictionary.iteritems():
+        total_count +=1
+        string_rep = string_rep+"\n"+str(total_count) +") " + rows + ": " +str(value)
+        if total_count == len(procurement_dictionary):
+            string_rep = string_rep +"\n" + "%050s" %(signify_end)
+            return string_rep
 
 def total_procurement_dictionary1():
     global total_procurement_dictionary
@@ -71,3 +64,4 @@ def sorted_total_procurement_dictionary1(asc):
                 return string_rep
     else:
         return "error"
+

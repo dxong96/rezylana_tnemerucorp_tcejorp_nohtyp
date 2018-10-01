@@ -12,10 +12,11 @@ from function_4 import function_4
 from function_5 import function_5
 import function_2
 from message_dialog import MessageDialog
-from function_7 import procurement_dictionary1,total_procurement_dictionary1,agency_no,average_procurement1,sorted_average_procurement
-from function_8 import procurement_dictionary1,total_procurement_dictionary1,agency_max_procurement,sorted_max_procurement
-from function_9 import procurement_dictionary1,total_procurement_dictionary1,agency_min_procurement,sorted_min_procurement
+from function_7 import agency_no,average_procurement1,sorted_average_procurement
+from function_8 import agency_max_procurement,sorted_max_procurement
+from function_9 import agency_min_procurement,sorted_min_procurement
 from function_11 import sort_date_time1,sort_by_expired_date1
+from function_12 import sort_by_nonexpired_date1
 
 class MainPage(tk.Frame):
     output_text = False
@@ -155,7 +156,16 @@ class MainPage(tk.Frame):
         function11_input_button.menu.add_command(label='Ascending', command=self.function_11_clicked(True))
         function11_input_button.menu.add_command(label='Descending', command=self.function_11_clicked(False))
         function11_input_button['menu'] = function11_input_button.menu
+        
+        # Function 12
+        function12_input_button = tk.Menubutton(function_input_frame, text="Function 12", relief=tk.RAISED)
+        function12_input_button.grid(row=0, column=10)
+        # function12_input_button.bind('<Button-1>', self.function_11_clicked)
 
+        function12_input_button.menu = tk.Menu(function12_input_button)
+        function12_input_button.menu.add_command(label='Ascending', command=self.function_12_clicked(True))
+        function12_input_button.menu.add_command(label='Descending', command=self.function_12_clicked(False))
+        function12_input_button['menu'] = function12_input_button.menu
 
         # basic statistics START
         basic_stats_label = tk.Label(self, text="Basic Statistics")
@@ -280,8 +290,6 @@ class MainPage(tk.Frame):
                 MessageDialog(self, "Load contractors and procurements first!")
                 return
 
-            self.set_output(procurement_dictionary1())
-            self.set_output(total_procurement_dictionary1())
             self.set_output(agency_no())
             self.set_output(average_procurement1())
             self.set_output(sorted_average_procurement(asc))
@@ -293,8 +301,6 @@ class MainPage(tk.Frame):
                 MessageDialog(self, "Load contractors and procurements first!")
                 return
 
-            self.set_output(procurement_dictionary1())
-            self.set_output(total_procurement_dictionary1())
             self.set_output(agency_max_procurement())
             self.set_output(sorted_max_procurement(asc))
         return wrapper
@@ -305,8 +311,6 @@ class MainPage(tk.Frame):
                 MessageDialog(self, "Load contractors and procurements first!")
                 return
 
-            self.set_output(procurement_dictionary1())
-            self.set_output(total_procurement_dictionary1())
             self.set_output(agency_min_procurement())
             self.set_output(sorted_min_procurement(asc))
         return wrapper
@@ -325,9 +329,17 @@ class MainPage(tk.Frame):
                 return
 
             self.set_output(sort_date_time1())
-            self.set_output(sort_by_expired_date1(True))
+            self.set_output(sort_by_expired_date1(asc))
         return wrapper
 
+    def function_12_clicked(self, asc):
+        def wrapper():
+            if not data_holder.are_sheets_loaded():
+                MessageDialog(self, "Load contractors and procurements first!")
+                return
+
+            self.set_output(sort_by_nonexpired_date1(asc))
+        return wrapper
     ''' Click listeners END '''
 
     def on_closing(self):
