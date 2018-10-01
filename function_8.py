@@ -10,6 +10,7 @@ def agency_max_procurement():
     global max_procurement_dictionary
     string_rep="Data recorded below indicates the maximum procurement amount for each agency:"
     count =0
+    function_3.procurement_dictionary1()
     signify_end="------END OF CURRENT DATA------"
     for k,v in function_3.procurement_dictionary.iteritems():
         combined_string= ",".join(str(number) for number in function_3.procurement_dictionary[k])
