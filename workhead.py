@@ -36,9 +36,10 @@ class Workhead:
     _contractors = []
     _procurements = []
 
-    def __init__(self, workhead, grade):
+    def __init__(self, workhead, grade, expiry_date):
         self.workhead = workhead
         self.grade = grade
+        self.expiry_date = expiry_date
         self.category_abbreviation = self.workhead[0:2]
 
     def workhead_category_title(self):
@@ -55,13 +56,17 @@ class Workhead:
 
 
     def display_text(self):
-        return workhead_display_text(self.workhead)
+        result = [workhead_display_text(self.workhead)]
+        result.append("Expiry Date:")
+        result.append("\t%s" % self.expiry_date)
+
+        return '\n'.join(result)
 
 
 def workhead_display_text(workhead):
     result = []
     workhead_info = data_holder.contractor_registry[workhead]
-    result.append('\tWorkhead:')
+    result.append('\tWorkhead Code:')
     result.append("\t%s" % workhead)
     result.append('\tTitle:')
     result.append("\t%s" % workhead_info["title"])

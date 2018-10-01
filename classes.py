@@ -19,19 +19,19 @@ postal_code
 tel_no
 """
 class Contractor:
-    AUTO_ATTRIBUTES = ["company_name", "uen_no", "additional_info", "expiry_date", "building_no",
+    AUTO_ATTRIBUTES = ["company_name", "uen_no", "additional_info", "building_no",
                        "street_name", "unit_no", "building_name", "postal_code", "tel_no"]
 
     def __init__(self, contractor_sequence):
         self.workheads = set()
-        self.add_workhead(contractor_sequence['workhead'], contractor_sequence['grade'])
+        self.add_workhead(contractor_sequence['workhead'], contractor_sequence['grade'], contractor_sequence['expiry_date'])
 
         for attr in self.AUTO_ATTRIBUTES:
             setattr(self, attr, contractor_sequence[attr])
 
-    def add_workhead(self, workhead, grade):
-        industry = Workhead(workhead, grade)
-        self.workheads.add(industry)
+    def add_workhead(self, wh, grade, expiry_date):
+        workhead = Workhead(wh, grade, expiry_date)
+        self.workheads.add(workhead)
 
     def is_in_workhead_category(self, category_abbreviation):
         for workhead in self.workheads:
@@ -52,8 +52,6 @@ class Contractor:
         result.append(self.uen_no)
         result.append("Additional Information:")
         result.append(self.additional_info)
-        result.append("Expiry Date:")
-        result.append(self.expiry_date)
         result.append("Address:")
         result.append(self.building_no)
         result.append(self.street_name)

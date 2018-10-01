@@ -15,7 +15,7 @@ def load_contractor_list(path):
             company_name = row['company_name']
             if company_name in contractor_dict:
                 contractor = contractor_dict[company_name]
-                contractor.add_workhead(row['workhead'], row['grade'])
+                contractor.add_workhead(row['workhead'], row['grade'], row['expiry_date'])
             else:
                 contractor = Contractor(row)
                 contractor_dict[company_name] = contractor

@@ -64,7 +64,6 @@ class WorkheadsPage(tk.Toplevel):
     def show_contractor_info(self, contractor_name):
         contractor = self.name_to_contractors[contractor_name][0]
         text_to_display = contractor.display_text()
-        print text_to_display
         self.set_output(text_to_display)
 
     def set_output(self, text):
