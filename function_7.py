@@ -33,6 +33,8 @@ def average_procurement1():
     string_rep="Data recorded below indicates the average procurement amount for each agency:"
     count = 0
     signify_end="------END OF CURRENT DATA------"
+    function_3.procurement_dictionary1()
+    function_3.total_procurement_dictionary1()
     for row in function_3.total_procurement_dictionary:
         average_procurement[row]=round(float(function_3.total_procurement_dictionary[row])/no_companies_agency[row],2)
     for rows,value in average_procurement.iteritems():
