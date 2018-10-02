@@ -10,6 +10,7 @@ from workheads_page import WorkheadsPage
 from function_3 import procurement_dictionary1,total_procurement_dictionary1,sorted_total_procurement_dictionary1
 from function_4 import function_4
 from function_5 import function_5
+from function_6 import function_6
 import function_2
 from message_dialog import MessageDialog
 from function_7 import agency_no,average_procurement1,sorted_average_procurement
@@ -108,9 +109,26 @@ class MainPage(tk.Frame):
         function5_input_button.bind('<Button-1>', self.function_5_clicked)
 
         # Function 6
-        function5_input_button = tk.Button(function_input_frame, text="Function 6")
-        function5_input_button.grid(row=0, column=4)
-        function5_input_button.bind('<Button-1>', self.function_6_clicked)
+        function6_input_button = tk.Menubutton(function_input_frame, text="Function 6")
+        function6_input_button.grid(row=0, column=4)
+        # function6_input_button.bind('<Button-1>', self.function_6_clicked)
+
+        function6_input_button.menu = tk.Menu(function6_input_button)
+        function6_input_button.menu.add_command(label='1.Technology', command=self.function_6_clicked('Technology'))
+        function6_input_button.menu.add_command(label='2.Transport', command=self.function_6_clicked('Transport'))
+        function6_input_button.menu.add_command(label='3.Goveernment', command=self.function_6_clicked('Government'))
+        function6_input_button.menu.add_command(label='4.Law', command=self.function_6_clicked('Law'))
+        function6_input_button.menu.add_command(label='5.Public Service',
+                                                command=self.function_6_clicked('Public Service'))
+        function6_input_button.menu.add_command(label='6.Finance', command=self.function_6_clicked('Finance'))
+        function6_input_button.menu.add_command(label='7.Clubs', command=self.function_6_clicked('Clubs'))
+        function6_input_button.menu.add_command(label='8.Health', command=self.function_6_clicked('Health'))
+        function6_input_button.menu.add_command(label='9.Housing', command=self.function_6_clicked('Housing'))
+        function6_input_button.menu.add_command(label='10.Maritime', command=self.function_6_clicked('Maritime'))
+        function6_input_button.menu.add_command(label='11.Eduction', command=self.function_6_clicked('Education'))
+        function6_input_button.menu.add_command(label='12.Defence', command=self.function_6_clicked('Defence'))
+
+        function6_input_button['menu'] = function6_input_button.menu
         
          #Function 7
         function7_input_button = tk.Menubutton(function_input_frame, text="Function 7", relief=tk.RAISED)
@@ -277,12 +295,14 @@ class MainPage(tk.Frame):
             self.set_output(function_3(asc))
         return wrapper
 
-    def function_6_clicked(self, e):
-        if not data_holder.are_sheets_loaded():
-            MessageDialog(self, "Load contractors and procurements first!")
-            return
+    def function_6_clicked(self, category):
+        def wrapper():
+            if not data_holder.are_sheets_loaded():
+                MessageDialog(self, "Load contractors and procurements first!")
+                return
+            self.set_output(function_6(category))
 
-        self.set_output(function_5())
+        return wrapper
         
     def function_7_clicked(self, asc):
         def wrapper():
