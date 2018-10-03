@@ -11,6 +11,7 @@ WORKHEAD_CATEGORIES = {
 }
 
 # tendering limits -1 means unlimited
+# The unit is millions
 CONSTRUCTION_GRADE_TENDERING_LIMITS = {
     "A1": -1,
     "A2": 85,
@@ -47,18 +48,23 @@ class Workhead:
 
     # according to https://www.bca.gov.sg/ContractorsRegistry/contractors_tendering_limits.html
     def tendering_limit(self):
+        limit = -1
         if self.category_abbreviation == "CW":
-            return CONSTRUCTION_GRADE_TENDERING_LIMITS[self.category_abbreviation]
+            limit = CONSTRUCTION_GRADE_TENDERING_LIMITS[self.grade]
         elif self.category_abbreviation in ["CR", "ME", "MW", "SY"]:
-            return SPECIALISTS_GRADE_TENDERING_LIMIT[self.category_abbreviation]
-        else:
-            return -1
+            limit = SPECIALISTS_GRADE_TENDERING_LIMIT[self.grade]
 
+        if limit == -1:
+            return 'Unlimited'
+        else:
+            return '%.1f Million' % limit
 
     def display_text(self):
         result = [workhead_display_text(self.workhead)]
-        result.append("Expiry Date:")
+        result.append("\tExpiry Date:")
         result.append("\t%s" % self.expiry_date)
+        result.append('\tTendering Limit:')
+        result.append('\t%s' % self.tendering_limit())
 
         return '\n'.join(result)
 
