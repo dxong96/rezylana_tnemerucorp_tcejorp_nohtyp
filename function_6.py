@@ -1,10 +1,5 @@
 import data_holder
 
-data_holder.load_contractor_list("C:\Users\Dx\Documents\SIT\ICT 1002 Programming Fundamentals\Python Project\Project Datasets\listing-of-registered-contractors\listing-of-registered-contractors.csv")
-data_holder.load_procurement_list("C:\Users\Dx\Documents\SIT\ICT 1002 Programming Fundamentals\Python Project\Project Datasets\government-procurement\government-procurement-via-gebiz.csv")
-
-
-
 def agencyamt(category):
     '''search parametres go here'''
 
