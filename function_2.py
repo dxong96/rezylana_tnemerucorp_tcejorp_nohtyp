@@ -24,9 +24,9 @@ def save():
             file_path = folder + '%s.txt' % agency #Convert government-procurement-via-gebiz csv file to txt file, and save the txt file to Govern Procurement folder
             with open(file_path, 'w') as f: #Open the txt file as writable file
                 for procurement in agency_to_procurements[agency]:
-                    f.write(procurement.display_text())
+                    f.write(procurement.display_text() + '\n')
 
-                f.write('=' * 50)
+                    f.write('='*1000 + '\n')
 
         tkMessageBox.showinfo("", "File save to Govern Procurement folder successful") #Message dialog box pop out when file save successful
 
