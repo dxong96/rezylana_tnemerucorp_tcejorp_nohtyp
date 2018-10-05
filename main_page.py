@@ -27,9 +27,10 @@ class MainPage(tk.Frame):
         tk.Frame.__init__(self, parent)
 
         # title START
-        title_frame = tk.Frame(self, bd=10, bg="red")
+        title_frame = tk.Frame(self, bd=10, bg="black")
         title_frame.grid(row=0, column=0, columnspan=12, sticky=(tk.W, tk.E))
-        heading = tk.Label(title_frame, text="Welcome to Python Project 2k18", font=("arial", 20, "bold"), fg="black")
+
+        heading = tk.Label(title_frame, text="Your One-Stop Search Program", font=("arial", 20, "bold"), fg="white" ,bg="black")
         heading.grid(row=0, column=1)
         title_frame.grid_columnconfigure(0, weight=1)  # fill up empty spaces to left of heading
         title_frame.grid_columnconfigure(2, weight=1)  # fill up empty spaces to right of heading
@@ -40,7 +41,7 @@ class MainPage(tk.Frame):
         contractors_input_frame = tk.Frame(self)
         contractors_input_frame.grid(row=1, column=0, sticky=tk.W)
 
-        contractors_input_label = tk.Label(contractors_input_frame, text="Select your contractors sheet: ")
+        contractors_input_label = tk.Label(contractors_input_frame, text="Select Your Contractors Sheet: ")
         contractors_input_label.grid(row=0, column=0)
 
         contractors_input_button = tk.Button(contractors_input_frame, text="Browse")
@@ -52,7 +53,7 @@ class MainPage(tk.Frame):
         gov_procurements_input_frame = tk.Frame(self)
         gov_procurements_input_frame.grid(row=2, column=0, sticky=tk.W)
 
-        gov_procurements_input_label = tk.Label(gov_procurements_input_frame, text="Select your procurements sheet: ")
+        gov_procurements_input_label = tk.Label(gov_procurements_input_frame, text="Select Your Procurements Sheet: ")
         gov_procurements_input_label.grid(row=0, column=0)
 
         gov_procurements_input_button = tk.Button(gov_procurements_input_frame, text="Browse")
@@ -70,7 +71,7 @@ class MainPage(tk.Frame):
         # function2_input_label = tk.Label(function_input_frame, text="Function 2: ")
         # function2_input_label.grid(row=0, column=0)
 
-        function2_input_button = tk.Button(function_input_frame, text="Function 2")
+        function2_input_button = tk.Button(function_input_frame, text="Export Procurement")
         function2_input_button.grid(row=0, column=0)
         function2_input_button.bind('<Button-1>', self.function_2_clicked)
 
@@ -80,7 +81,7 @@ class MainPage(tk.Frame):
         # function3_input_label = tk.Label(function3_input_frame, text="Function 3: ")
         # function3_input_label.grid(row=0, column=0)
 
-        function3_input_button = tk.Menubutton(function_input_frame, text="Function 3", relief=tk.RAISED)
+        function3_input_button = tk.Menubutton(function_input_frame, text="Total Amount Of Procurement", relief=tk.RAISED)
         function3_input_button.grid(row=0, column=1)
         # function3_input_button.bind('<Button-1>', self.function_3_clicked)
 
@@ -95,7 +96,7 @@ class MainPage(tk.Frame):
         # function4_input_label = tk.Label(function4_input_frame, text="Function 4: ")
         # function4_input_label.grid(row=0, column=0)
 
-        function4_input_button = tk.Button(function_input_frame, text="Function 4")
+        function4_input_button = tk.Button(function_input_frame, text="Awarded Reg Contractors")
         function4_input_button.grid(row=0, column=2)
         function4_input_button.bind('<Button-1>', self.function_4_clicked)
         # Function 5 Identify  one  way  to  categorize  the  government  agency  and see
@@ -104,12 +105,12 @@ class MainPage(tk.Frame):
         # function5_input_label = tk.Label(function5_input_frame, text="Function 5: ")
         # function5_input_label.grid(row=0, column=0)
 
-        function5_input_button = tk.Button(function_input_frame, text="Function 5")
+        function5_input_button = tk.Button(function_input_frame, text="Top 5 Contractors")
         function5_input_button.grid(row=0, column=3)
         function5_input_button.bind('<Button-1>', self.function_5_clicked)
 
         # Function 6
-        function6_input_button = tk.Menubutton(function_input_frame, text="Function 6")
+        function6_input_button = tk.Menubutton(function_input_frame, text="Agency")
         function6_input_button.grid(row=0, column=4)
         # function6_input_button.bind('<Button-1>', self.function_6_clicked)
 
@@ -185,12 +186,14 @@ class MainPage(tk.Frame):
         function12_input_button.menu.add_command(label='Descending', command=self.function_12_clicked(False))
         function12_input_button['menu'] = function12_input_button.menu
 
+
+
         # basic statistics START
         basic_stats_label = tk.Label(self, text="Basic Statistics")
-        basic_stats_label.grid(row=4, column=0, sticky=tk.W)
+        basic_stats_label.grid(row=5, column=0, sticky=tk.W)
 
         basic_stats_text_container = tk.Frame(self)
-        basic_stats_text_container.grid(row=5, column=0, sticky=(tk.W, tk.E))
+        basic_stats_text_container.grid(row=6, column=0, sticky=(tk.W, tk.E))
 
         basic_stats_text = tk.Text(basic_stats_text_container, state=tk.DISABLED)
         basic_stats_text.pack(side=tk.LEFT, expand=True, fill=tk.X)
@@ -231,6 +234,10 @@ class MainPage(tk.Frame):
         self.output_text.insert(tk.END, text)
         self.output_text.config(state=tk.DISABLED)
 
+    def entry_box(self, w):
+        w.destroy()
+
+
     def clear_output(self):
         self.output_text.config(state=tk.NORMAL)
         self.output_text.delete('1.0', tk.END)
@@ -268,17 +275,31 @@ class MainPage(tk.Frame):
                 MessageDialog(self, "Load contractors and procurements first!")
                 return
 
+
+
             self.set_output(procurement_dictionary1())
             self.set_output(total_procurement_dictionary1())
             self.set_output(sorted_total_procurement_dictionary1(asc))
+
+
         return wrapper
-
-
     def function_4_clicked(self, e):
         if not data_holder.are_sheets_loaded():
             MessageDialog(self, "Load contractors and procurements first!")
             return
         self.set_output(function_4())
+        search_input_frame = tk.Frame(self)
+        search_input_frame.grid(row=4, column=0, sticky=tk.W)
+
+        w = tk.Entry(search_input_frame)
+        w.grid(row=0, column=0, sticky=tk.W)
+        Search_button = tk.Button(search_input_frame, text="Search")
+        Search_button.grid(row=0, column=1)
+        Search_button.bind('<Button-1>', self.Search_clicked)
+
+
+    def Search_clicked(self, e):
+        print "search"
 
     def function_5_clicked(self, e):
         if not data_holder.are_sheets_loaded():
