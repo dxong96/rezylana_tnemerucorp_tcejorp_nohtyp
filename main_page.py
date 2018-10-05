@@ -7,17 +7,18 @@ from os import getcwd
 from workheads_page import WorkheadsPage
 
 
-from function_3 import procurement_dictionary1,total_procurement_dictionary1,sorted_total_procurement_dictionary1
+import function_3
 from function_4 import function_4
 from function_5 import function_5
 from function_6 import function_6
 import function_2
 from message_dialog import MessageDialog
-from function_7 import agency_no,average_procurement1,sorted_average_procurement
-from function_8 import agency_max_procurement,sorted_max_procurement
-from function_9 import agency_min_procurement,sorted_min_procurement
-from function_11 import sort_date_time1,sort_by_expired_date1
-from function_12 import sort_by_nonexpired_date1
+import function_7
+import function_8
+import function_9
+import function_11
+import function_12
+
 
 class MainPage(tk.Frame):
     output_text = False
@@ -277,9 +278,9 @@ class MainPage(tk.Frame):
 
 
 
-            self.set_output(procurement_dictionary1())
-            self.set_output(total_procurement_dictionary1())
-            self.set_output(sorted_total_procurement_dictionary1(asc))
+            self.set_output(function_3.procurement_dictionary1())
+            self.set_output(function_3.total_procurement_dictionary1())
+            self.set_output(function_3.sorted_total_procurement_dictionary1(asc))
 
 
         return wrapper
@@ -307,14 +308,6 @@ class MainPage(tk.Frame):
             return
         self.set_output(function_5())
 
-    def function_7_clicked(self, asc):
-        def wrapper():
-            if not data_holder.are_sheets_loaded():
-                MessageDialog(self, "Load contractors and procurements first!")
-                return
-
-            self.set_output(function_3(asc))
-        return wrapper
 
     def function_6_clicked(self, category):
         def wrapper():
@@ -331,9 +324,9 @@ class MainPage(tk.Frame):
                 MessageDialog(self, "Load contractors and procurements first!")
                 return
 
-            self.set_output(agency_no())
-            self.set_output(average_procurement1())
-            self.set_output(sorted_average_procurement(asc))
+            self.set_output(function_7.agency_no())
+            self.set_output(function_7.average_procurement1())
+            self.set_output(function_7.sorted_average_procurement(asc))
         return wrapper
 
     def function_8_clicked(self, asc):
@@ -342,8 +335,8 @@ class MainPage(tk.Frame):
                 MessageDialog(self, "Load contractors and procurements first!")
                 return
 
-            self.set_output(agency_max_procurement())
-            self.set_output(sorted_max_procurement(asc))
+            self.set_output(function_8.agency_max_procurement())
+            self.set_output(function_8.sorted_max_procurement(asc))
         return wrapper
 
     def function_9_clicked(self, asc):
@@ -352,8 +345,8 @@ class MainPage(tk.Frame):
                 MessageDialog(self, "Load contractors and procurements first!")
                 return
 
-            self.set_output(agency_min_procurement())
-            self.set_output(sorted_min_procurement(asc))
+            self.set_output(function_9.agency_min_procurement())
+            self.set_output(function_9.sorted_min_procurement(asc))
         return wrapper
 
     def function_10_clicked(self, e):
@@ -369,8 +362,8 @@ class MainPage(tk.Frame):
                 MessageDialog(self, "Load contractors and procurements first!")
                 return
 
-            self.set_output(sort_date_time1())
-            self.set_output(sort_by_expired_date1(asc))
+            self.set_output(function_11.sort_date_time1())
+            self.set_output(function_11.sort_by_expired_date1(asc))
         return wrapper
 
     def function_12_clicked(self, asc):
@@ -379,7 +372,7 @@ class MainPage(tk.Frame):
                 MessageDialog(self, "Load contractors and procurements first!")
                 return
 
-            self.set_output(sort_by_nonexpired_date1(asc))
+            self.set_output(function_12.sort_by_nonexpired_date1(asc))
         return wrapper
     ''' Click listeners END '''
 
