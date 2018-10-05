@@ -1,36 +1,34 @@
+'''Read the CSV file and export each government agency's procurement details into one folder and sort the details by tender number in txt file'''
+
 import os
-import csv
-import shutil
+import data_holder
+import tkMessageBox
 
 def Create_Folder():
-    folder = './Govern Procurement/'
+    '''Create Govern Procurement Folder'''
+    folder = './Govern Procurement/' #Folder name Govern Procurement
     try:
         if not os.path.exists(folder):
-            os.makedirs(folder)
+            os.makedirs(folder) #If folder does not exists then create folder
     except OSError:
-        print ('Error: Creating directory. ' + folder)
+        print ('Error creating directory. ' + folder) #Error detect if folder exist
 
-def Export_CSV_Data_To_Txt():
-    with open ('government-procurement-via-gebiz.csv','r') as csv_file1:
-        # fields = [] #initializing
+def save():
+    '''Create Govern procurements folder & save the procurements details for agency into txt file in Govern Procurement folder'''
+    try:
+        Create_Folder()
+        agency_to_procurements = data_holder.create_dict_for_list(data_holder.procurements, 'agency') #Create dictionary to store procurement information
 
-        csv_read = csv.reader(csv_file1) #creating csv reader object
-        # extracting field through first row
-        # fields = csv_reader.next()
+        for agency in agency_to_procurements:
+            folder = './Govern Procurement/'
+            file_path = folder + '%s.txt' % agency #Convert government-procurement-via-gebiz csv file to txt file, and save the txt file to Govern Procurement folder
+            with open(file_path, 'w') as f: #Open the txt file as writable file
+                for procurement in agency_to_procurements[agency]:
+                    f.write(procurement.display_text())
 
-        #write to txt file
-        with open('government-procurement-via-gebiz_new.txt', 'w')as csv_file2:
-            csv_write = csv.writer(csv_file2, delimiter='\t')
-            for items in csv_read:
-                csv_write.writerow(items)
+                f.write('=' * 50)
 
-        csv_file1.close()
+        tkMessageBox.showinfo("", "File save to Govern Procurement folder successful") #Message dialog box pop out when file save successful
 
-def Save_To_Folder():
-
-    src = os.listdir(r"C:\Users\jia_f\Downloads\rezylana_tnemerucorp_tcejorp_nohtyp-master")
-    destination = r"C:\Users\jia_f\Downloads\rezylana_tnemerucorp_tcejorp_nohtyp-master\Govern Procurement"
-
-    for files in src:
-        if files.endswith("government-procurement-via-gebiz_new.txt"):
-            shutil.move(files,destination)
+    except:
+        tkMessageBox.showinfo("", "Error saving file") #Error message dialog box pop out when file was not save successful

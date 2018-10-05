@@ -237,13 +237,10 @@ class MainPage(tk.Frame):
         return inner_func
 
     def function_2_clicked(self, e):
-        function_2.createFolder()
-        function_2.writetxt()
-        function_2.txtdetails()
         if not data_holder.are_sheets_loaded():
             MessageDialog(self, "Load contractors and procurements first!")
             return
-        print len(data_holder.contractors)
+        function_2.save()
 
     def function_3_clicked(self, asc):
         def wrapper():
