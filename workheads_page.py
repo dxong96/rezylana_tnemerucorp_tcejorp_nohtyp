@@ -5,6 +5,7 @@ import workhead
 import function_10
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from output_text_box import OutputTextBox
 
 class WorkheadsPage(tk.Toplevel):
     '''
@@ -30,20 +31,10 @@ class WorkheadsPage(tk.Toplevel):
         self.listbox.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
         self.set_workhead_categories_in_listbox()
 
-        # output text START
-        basic_stats_text_container = tk.Frame(self)
-        basic_stats_text_container.grid(row=0, column=1, sticky=(tk.W, tk.E))
-
-        basic_stats_text = tk.Text(basic_stats_text_container, state=tk.DISABLED, height=10)
-        basic_stats_text.pack(side=tk.LEFT, expand=True, fill=tk.X)
-        self.output_text = basic_stats_text
-
-        basic_stats_text_scroll = tk.Scrollbar(basic_stats_text_container)
-        basic_stats_text_scroll.pack(side=tk.RIGHT, fill=tk.Y)
-
-        basic_stats_text_scroll.config(command=basic_stats_text.yview)
-        basic_stats_text.config(yscrollcommand=basic_stats_text_scroll.set)
-        # output text END
+        self.output_tb = OutputTextBox(self)
+        self.output_tb.output_text.config(height=10)
+        self.output_tb.grid(row=0, column=1, sticky=(tk.W, tk.E))
+        self.grab_set()
 
     def show_workhead_categories_piechart(self):
         if (self.workhead_cat_graph_data == None):
@@ -101,7 +92,7 @@ class WorkheadsPage(tk.Toplevel):
         self.listbox.delete(0, self.listbox.size())
         self.listbox.insert(0, 'back')
         self.listbox.insert(tk.END, *function_10.get_workheads_for_category(workhead_category))
-        self.set_output(workhead.WORKHEAD_CATEGORIES[workhead_category])
+        self.output_tb.set_output(workhead.WORKHEAD_CATEGORIES[workhead_category])
         self.show_workhead_for_categories_piechart(workhead_category)
         self.list_state = 'w'
 
@@ -110,24 +101,13 @@ class WorkheadsPage(tk.Toplevel):
         self.listbox.insert(0, 'back')
         contractor_names = map(lambda c: c.company_name, function_10.get_contractors_by_workhead(wh))
         self.listbox.insert(tk.END, *contractor_names)
-        self.set_output(workhead.workhead_display_text(wh))
+        self.output_tb.set_output(workhead.workhead_display_text(wh))
         self.list_state = wh
 
     def show_contractor_info(self, contractor_name):
         contractor = self.name_to_contractors[contractor_name][0]
         text_to_display = contractor.display_text()
-        self.set_output(text_to_display)
-
-    def set_output(self, text):
-        self.clear_output()
-        self.output_text.config(state=tk.NORMAL)
-        self.output_text.insert(tk.END, text)
-        self.output_text.config(state=tk.DISABLED)
-
-    def clear_output(self):
-        self.output_text.config(state=tk.NORMAL)
-        self.output_text.delete('1.0', tk.END)
-        self.output_text.config(state=tk.DISABLED)
+        self.output_tb.set_output(text_to_display)
 
     def listbox_item_clicked(self, e):
         index = self.listbox.nearest(e.y)

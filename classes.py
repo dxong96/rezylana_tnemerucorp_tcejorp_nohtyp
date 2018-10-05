@@ -1,7 +1,6 @@
 import data_holder
 from workhead import *
 
-
 """
 Contractor attributes:
 
@@ -18,13 +17,16 @@ building_name
 postal_code
 tel_no
 """
+
+
 class Contractor:
     AUTO_ATTRIBUTES = ["company_name", "uen_no", "additional_info", "building_no",
                        "street_name", "unit_no", "building_name", "postal_code", "tel_no"]
 
     def __init__(self, contractor_sequence):
         self.workheads = set()
-        self.add_workhead(contractor_sequence['workhead'], contractor_sequence['grade'], contractor_sequence['expiry_date'])
+        self.add_workhead(contractor_sequence['workhead'], contractor_sequence['grade'],
+                          contractor_sequence['expiry_date'])
 
         for attr in self.AUTO_ATTRIBUTES:
             setattr(self, attr, contractor_sequence[attr])
@@ -71,8 +73,6 @@ class Contractor:
         return '\n'.join(result)
 
 
-
-
 """
 Procurement attributes:
 
@@ -84,6 +84,8 @@ tender_detail_status
 supplier_name
 awarded_amt
 """
+
+
 class Procurement:
     ATTRIBUTES = ["tender_no", "agency", "tender_description",
                   "award_date", "tender_detail_status", "supplier_name",
@@ -101,3 +103,10 @@ class Procurement:
             self.supplier_name = None
 
         self.awarded_amt = float(self.awarded_amt)
+
+    def display_text(self):
+        lines = []
+        for attr in self.ATTRIBUTES:
+            lines.append('%s: %s' % (attr, str(getattr(self, attr))))
+
+        return '\n'.join(lines)
