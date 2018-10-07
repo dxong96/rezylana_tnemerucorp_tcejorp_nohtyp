@@ -1,3 +1,7 @@
+"""
+The TopLevel dialog for procurements grouped by topic
+"""
+
 import Tkinter as tk
 import ttk
 
@@ -33,12 +37,21 @@ class ProcurementTopicsDialog(tk.Toplevel):
         self.queue_task()
 
     def queue_task(self):
+        """
+        Start loading procurement and topics in another Thread
+        :return: None
+        """
         self.queue = Queue.Queue()
         ThreadedTask(self.queue, self.topic_modeller).start()
         self.master.after(100, self.process_queue)
         self.retrain_button.configure(state=tk.DISABLED)
 
     def retrain_button_clicked(self, e):
+        """
+        Delete the cache file start the task to retrain the LDA model
+        :param e: tkinter event object
+        :return: None
+        """
         button_state = self.retrain_button['state']
         if button_state == tk.DISABLED:
             return
@@ -49,6 +62,11 @@ class ProcurementTopicsDialog(tk.Toplevel):
         self.queue_task()
 
     def process_queue(self):
+        """
+        Check if task is completed.
+        If it is completed show result and hide the progress bar
+        :return: None
+        """
         try:
             msg = self.queue.get(0)
 
@@ -66,10 +84,6 @@ class ProcurementTopicsDialog(tk.Toplevel):
         except Queue.Empty:
             self.master.after(100, self.process_queue)
 
-    def close(self):
-        self.grab_release()
-        self.destroy()
-
 
 class ThreadedTask(threading.Thread):
     def __init__(self, queue, topic_modeller):
@@ -78,6 +92,9 @@ class ThreadedTask(threading.Thread):
         self.queue = queue
 
     def run(self):
+        """
+        The method to load the topic and procurements is called in the threaded task
+        :return: None
+        """
         self.topic_modeller.load_topic_and_procurements()
-        print len(self.topic_modeller.grouped_topic_procurements)
         self.queue.put("Task finished")

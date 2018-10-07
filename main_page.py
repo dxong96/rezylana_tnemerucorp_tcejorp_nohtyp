@@ -1,3 +1,7 @@
+"""
+The UI for the first page containing the buttons to access different function
+"""
+
 import Tkinter as tk
 import data_holder
 import traceback
@@ -67,24 +71,13 @@ class MainPage(tk.Frame):
 
         basic_function_row = tk.Frame(self)
         basic_function_row.grid(row=4, column=0, sticky=tk.W)
-        #
-        # function2_input_label = tk.Label(function_input_frame, text="Function 2: ")
-        # function2_input_label.grid(row=0, column=0)
 
         function2_input_button = tk.Button(basic_function_row, text="Function 2")
         function2_input_button.grid(row=0, column=0)
         function2_input_button.bind('<Button-1>', self.function_2_clicked)
 
-        # Function 3 List down the  amount  of  the  procurement award  to  registered contractors and
-        # non-registered contractors, and top 5 contractors who were awarded by the most procurement
-
-        # function3_input_label = tk.Label(function3_input_frame, text="Function 3: ")
-        # function3_input_label.grid(row=0, column=0)
-
         function3_input_button = tk.Menubutton(basic_function_row, text="Function 3", relief=tk.RAISED)
         function3_input_button.grid(row=0, column=1)
-        # function3_input_button.bind('<Button-1>', self.function_3_clicked)
-
         function3_input_button.menu = tk.Menu(function3_input_button)
         function3_input_button.menu.add_command(label='Ascending', command=self.function_3_clicked(True))
         function3_input_button.menu.add_command(label='Descending ', command=self.function_3_clicked(False))
@@ -182,7 +175,6 @@ class MainPage(tk.Frame):
         function12_input_button = tk.Menubutton(advance_functions_row, text="Contractor with unexpired Workhead",
                                                 relief=tk.RAISED, direction=tk.RIGHT)
         function12_input_button.grid(sticky=(tk.W, tk.E), row=5)
-        # function12_input_button.bind('<Button-1>', self.function_11_clicked)
 
         function12_input_button.menu = tk.Menu(function12_input_button)
         function12_input_button.menu.add_command(label='Ascending', command=self.function_12_clicked(True))
@@ -210,19 +202,29 @@ class MainPage(tk.Frame):
 
         data_holder.load_contractor_registry()
 
-    def prompt_sheet_location(self):
+    @staticmethod
+    def prompt_sheet_location():
+        """
+        Ask the user to select which sheet to use
+        :return: String, path of excel sheet
+        """
         current_working_directory = getcwd()  # where the code is ran from
         filename = askopenfilename(initialdir=current_working_directory, title="Select sheet",
                                    filetypes=(("csv files", "*.csv"), ("all files", "*.*")))
         return filename
-        # we can call the import csv here with the filename
 
     def create_title_label(self, text):
+        """ A helper method to create a 'Title' Label with the 'Title' configuration '"""
         return tk.Label(self, text=text, font='Helvetica 10 bold')
 
-    ''' Click listeners START '''
-
+    # Click listeners START
     def handle_sheet_loading(self, func):
+        """
+        Contains the logic to ask and call the function to handle the path
+        :param func: the function that handles path
+        :return: a function object that handles the load button click
+        """
+
         def inner_func(e):
             path = self.prompt_sheet_location()
             if path == '':
@@ -237,12 +239,19 @@ class MainPage(tk.Frame):
         return inner_func
 
     def function_2_clicked(self, e):
+        """
+        Check if sheets are loaded and perform function 2
+        """
         if not data_holder.are_sheets_loaded():
             MessageDialog(self, "Load contractors and procurements first!")
             return
         function_2.save()
 
     def function_3_clicked(self, asc):
+        """
+        Check if sheets are loaded and perform function 3
+        """
+
         def wrapper():
             if not data_holder.are_sheets_loaded():
                 MessageDialog(self, "Load contractors and procurements first!")
@@ -254,6 +263,9 @@ class MainPage(tk.Frame):
         return wrapper
 
     def function_4_clicked(self, e):
+        """
+        Check if sheets are loaded and perform function 4
+        """
         if not data_holder.are_sheets_loaded():
             MessageDialog(self, "Load contractors and procurements first!")
             return
@@ -263,12 +275,19 @@ class MainPage(tk.Frame):
         print "search"
 
     def function_5_clicked(self, e):
+        """
+        Check if sheets are loaded and perform function 5
+        """
         if not data_holder.are_sheets_loaded():
             MessageDialog(self, "Load contractors and procurements first!")
             return
         self.output_tb.set_output(function_5())
 
     def function_6_clicked(self, category):
+        """
+        Check if sheets are loaded and perform function 6 with the selected category
+        """
+
         def wrapper():
             if not data_holder.are_sheets_loaded():
                 MessageDialog(self, "Load contractors and procurements first!")
@@ -278,6 +297,10 @@ class MainPage(tk.Frame):
         return wrapper
 
     def function_7_clicked(self, asc):
+        """
+        Check if sheets are loaded and perform function 7
+        """
+
         def wrapper():
             if not data_holder.are_sheets_loaded():
                 MessageDialog(self, "Load contractors and procurements first!")
@@ -286,9 +309,14 @@ class MainPage(tk.Frame):
             self.output_tb.set_output(function_7.agency_no())
             self.output_tb.set_output(function_7.average_procurement1())
             self.output_tb.set_output(function_7.sorted_average_procurement(asc))
+
         return wrapper
 
     def function_8_clicked(self, asc):
+        """
+        Check if sheets are loaded and perform function 8
+        """
+
         def wrapper():
             if not data_holder.are_sheets_loaded():
                 MessageDialog(self, "Load contractors and procurements first!")
@@ -299,6 +327,10 @@ class MainPage(tk.Frame):
         return wrapper
 
     def function_9_clicked(self, asc):
+        """
+        Check if sheets are loaded and perform function 9
+        """
+
         def wrapper():
             if not data_holder.are_sheets_loaded():
                 MessageDialog(self, "Load contractors and procurements first!")
@@ -310,6 +342,9 @@ class MainPage(tk.Frame):
         return wrapper
 
     def function_10_clicked(self, e):
+        """
+        Check if sheets are loaded and show the workheads pop up window
+        """
         if not data_holder.are_sheets_loaded():
             MessageDialog(self, "Load contractors and procurements first!")
             return
@@ -317,6 +352,10 @@ class MainPage(tk.Frame):
         WorkheadsPage(self)
 
     def function_11_clicked(self, asc):
+        """
+        Check if sheets are loaded and perform function 11
+        """
+
         def wrapper():
             if not data_holder.are_sheets_loaded():
                 MessageDialog(self, "Load contractors and procurements first!")
@@ -328,6 +367,10 @@ class MainPage(tk.Frame):
         return wrapper
 
     def function_12_clicked(self, asc):
+        """
+        Check if sheets are loaded and perform function 12
+        """
+
         def wrapper():
             if not data_holder.are_sheets_loaded():
                 MessageDialog(self, "Load contractors and procurements first!")
@@ -338,8 +381,14 @@ class MainPage(tk.Frame):
         return wrapper
 
     def lda_function_clicked(self, e):
+        """
+        Check if sheets are loaded and show procurements grouped by topic.
+        The topics are created using natural language processing, LDA model
+        """
+
         if not data_holder.are_sheets_loaded():
             MessageDialog(self, "Load contractors and procurements first!")
             return
         ProcurementTopicsDialog(self)
-    ''' Click listeners END '''
+
+    # Click listeners END

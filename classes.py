@@ -1,29 +1,47 @@
-import data_holder
+"""
+The modules contains the Procurement and Contractor class
+"""
 from workhead import *
-
-"""
-Contractor attributes:
-
-company_name
-uen_no
-workhead
-grade
-additional_info
-expiry_date
-building_no
-street_name
-unit_no
-building_name
-postal_code
-tel_no
-"""
 
 
 class Contractor:
+    """
+    A class that models the given data in the contractor excel sheet
+
+    Automatically processed columns:
+    company_name
+    uen_no
+    building_no
+    street_name
+    unit_no
+    building_name
+    postal_code
+    tel_no
+
+    Manually handled columns:
+    workhead
+    grade
+    expiry_date
+
+    Other attibutes:
+    workheads
+
+    Workheads is accessible via the workheads attribute of an instance of this class
+    """
     AUTO_ATTRIBUTES = ["company_name", "uen_no", "additional_info", "building_no",
                        "street_name", "unit_no", "building_name", "postal_code", "tel_no"]
 
     def __init__(self, contractor_sequence):
+        self.tel_no = None
+        self.postal_code = None
+        self.building_name = None
+        self.unit_no = None
+        self.street_name = None
+        self.building_no = None
+        self.uen_no = None
+        self.additional_info = None
+        self.company_name = None
+
         self.workheads = set()
         self.add_workhead(contractor_sequence['workhead'], contractor_sequence['grade'],
                           contractor_sequence['expiry_date'])
@@ -32,22 +50,44 @@ class Contractor:
             setattr(self, attr, contractor_sequence[attr])
 
     def add_workhead(self, wh, grade, expiry_date):
+        """
+        Adds workhead to contractor
+
+        :param wh: workhead
+        :param grade: grade of workhead
+        :param expiry_date: expiry date of workhead
+        :return: None
+        """
         workhead = Workhead(wh, grade, expiry_date)
         self.workheads.add(workhead)
 
-    def is_in_workhead_category(self, category_abbreviation):
+    def is_in_workhead_category(self, workhead_category):
+        """
+        Tells if contractor is part of the given workhead category
+        :param workhead_category: Workhead category
+        :return: True or False
+        """
         for workhead in self.workheads:
-            if workhead.category_abbreviation == category_abbreviation:
+            if workhead.category_abbreviation == workhead_category:
                 return True
         return False
 
     def is_in_workhead(self, workhead):
+        """
+        Tells if contractor has a given workhead
+        :param workhead:
+        :return: True or False
+        """
         for wh in self.workheads:
             if wh.workhead == workhead:
                 return True
         return False
 
     def display_text(self):
+        """
+        Provide a string representing the contractor instance
+        :return: String
+        """
         result = ["Company name:"]
         result.append(self.company_name)
         result.append("Uen No:")
@@ -73,27 +113,37 @@ class Contractor:
         return '\n'.join(result)
 
 
-"""
-Procurement attributes:
-
-tender_no.
-agency
-tender_description
-award_date
-tender_detail_status
-supplier_name
-awarded_amt
-"""
-
-
 class Procurement:
-    ATTRIBUTES = ["tender_no", "agency", "tender_description",
+    """
+    attributes:
+
+    Automatic Attributes:
+    tender_no
+    agency
+    tender_description
+    award_date
+    tender_detail_status
+    supplier_name
+    awarded_amt
+
+    Other attributes:
+    awarded
+    """
+    AUTO_ATTRIBUTES = ["tender_no", "agency", "tender_description",
                   "award_date", "tender_detail_status", "supplier_name",
                   "awarded_amt"]
 
     def __init__(self, contractor_sequence):
-        for i in range(len(self.ATTRIBUTES)):
-            attribute_name = self.ATTRIBUTES[i]
+        self.tender_no = None
+        self.agency = None
+        self.tender_description = None
+        self.award_date = None
+        self.tender_detail_status = None
+        self.supplier_name = None
+        self.awarded_amt = 0
+
+        for i in range(len(self.AUTO_ATTRIBUTES)):
+            attribute_name = self.AUTO_ATTRIBUTES[i]
             setattr(self, attribute_name, contractor_sequence[i])
 
         if self.awarded_amt > 0:
@@ -105,8 +155,12 @@ class Procurement:
         self.awarded_amt = float(self.awarded_amt)
 
     def display_text(self):
+        """
+        Provide a string representing the procurement instance
+        :return: String
+        """
         lines = []
-        for attr in self.ATTRIBUTES:
+        for attr in self.AUTO_ATTRIBUTES:
             lines.append('%s: %s' % (attr, str(getattr(self, attr))))
 
         return '\n'.join(lines)

@@ -1,3 +1,6 @@
+"""
+The module that contains the class with logic to create the LDA model for procurements.
+"""
 import data_holder
 import gensim
 from nltk.stem import WordNetLemmatizer, SnowballStemmer
@@ -7,7 +10,15 @@ import nltk
 import os
 import json
 
+
 class TopicModeller:
+    """
+    This class creates the LDA model from the procurements from the excel sheet
+    Grouped the procurements into the created topics
+    Create cached json file of the result
+
+    The result is cached for performance purpose as the training process takes some time.
+    """
     cache_most_common_words = None
     grouped_topic_procurements = None
 
@@ -15,10 +26,21 @@ class TopicModeller:
         self.CACHE_JSON_FILE_NAME = 'cached_tender_no_by_topic.json'
 
     def lemmatize_stemming(self, text):
+        """
+        Extract the common letters between different from such as
+        past tense
+        adjective
+        plural
+         """
         stemmer = SnowballStemmer('english')
         return stemmer.stem(WordNetLemmatizer().lemmatize(text, pos='v'))
 
     def preprocess(self, text):
+        """
+        Filter out unwanted words, lowercase, lemmatize to make it easy to match
+        :param text:
+        :return: list
+        """
         result = []
         common_words = self.most_common_words()
         stop_words = []
@@ -30,6 +52,12 @@ class TopicModeller:
         return result
 
     def train(self):
+        """
+        Create the LDA model with procurements and their tender descriptions.
+        Grouped the procurements by the generated topics
+        Dump it to a cache json file
+        :return: None
+        """
         nltk.download('wordnet')
         processed_tender_descriptions = map(lambda p: self.preprocess(p.tender_description), data_holder.procurements)
         dictionary = gensim.corpora.Dictionary(processed_tender_descriptions)
@@ -58,6 +86,11 @@ class TopicModeller:
             json.dump(topic_to_procurements, outfile)
 
     def most_common_words(self):
+        """
+        Find the most common words in the procurement tender descriptions.
+        Then return top 12 for the top most common words
+        :return: List of String
+        """
         if self.cache_most_common_words is None:
             word_counts = {}
             for p in data_holder.procurements:
@@ -73,9 +106,19 @@ class TopicModeller:
         return self.cache_most_common_words
 
     def needs_training(self):
+        """
+        Checks if cache file exists
+        :return: True or False
+        """
         return not os.path.exists(self.CACHE_JSON_FILE_NAME)
 
     def group_topic_procurements(self, tender_nos_by_topics):
+        """
+        Convert tender numbers grouped by their topics to procurements grouped by topic
+        then assigned the variable grouped_topic_procurements
+        :param tender_nos_by_topics:
+        :return: None
+        """
         tender_no_to_procurements = data_holder.create_dict_for_list(data_holder.procurements, 'tender_no')
         self.grouped_topic_procurements = []
         for i in range(len(tender_nos_by_topics)):
@@ -84,15 +127,27 @@ class TopicModeller:
             self.grouped_topic_procurements.append(procurements)
 
     def load_cache_file(self):
+        """
+        Load the cached file into the class
+        :return: None
+        """
         with open(self.CACHE_JSON_FILE_NAME, 'r') as f:
             tender_nos_by_topics = json.load(f)
             self.group_topic_procurements(tender_nos_by_topics)
 
     def clear_cache_file(self):
+        """
+        Delete the cached file
+        :return: None
+        """
         if not self.needs_training():
             os.remove(self.CACHE_JSON_FILE_NAME)
 
     def load_topic_and_procurements(self):
+        """
+        Decides to load from cache or train a new LDA model
+        :return: None
+        """
         if self.needs_training():
             self.train()
         else:

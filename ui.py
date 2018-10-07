@@ -1,10 +1,10 @@
+"""
+The main module that the app starts at
+The controls how to display the UI, like the size and etc
+"""
+
 from Tkinter import *
 from main_page import MainPage
-
-"""
-Resources:
-http://effbot.org/tkinterbook/tkinter-events-and-bindings.htm
-"""
 
 
 def main():
@@ -20,7 +20,12 @@ def main():
     root.update()  # render the ui
 
     def content_rendered(e):
-        root.minsize(e.width, e.height)  # set the minimum size of the window to content size
+        """
+        Update the root window to resize to fit the render content
+        :param e: event object
+        :return: None
+        """
+        root.minsize(e.width, e.height)
 
     content.bind('<Configure>', content_rendered)  # when window size changes. E.g On render
 

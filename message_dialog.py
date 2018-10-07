@@ -1,4 +1,9 @@
+"""
+A simple tkinter top level that is made to show messages
+"""
+
 import Tkinter as tk
+
 
 class MessageDialog(tk.Toplevel):
     def __init__(self, parent, message):

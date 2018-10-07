@@ -1,3 +1,8 @@
+"""
+This module holds the Workhead class that models after the workhead of contractors in the excel sheet
+It also holds definitions for workhead grades and categories
+"""
+
 import data_holder
 
 WORKHEAD_CATEGORIES = {
@@ -34,6 +39,9 @@ SPECIALISTS_GRADE_TENDERING_LIMIT = {
 
 
 class Workhead:
+    """
+    A class that models after the workhead of contractors in the excel sheet
+    """
     _contractors = []
     _procurements = []
 
@@ -44,6 +52,10 @@ class Workhead:
         self.category_abbreviation = self.workhead[0:2]
 
     def workhead_category_title(self):
+        """
+        Tells the title of the category the workhead is in
+        :return: String
+        """
         return WORKHEAD_CATEGORIES[self.category_abbreviation]
 
     # according to https://www.bca.gov.sg/ContractorsRegistry/contractors_tendering_limits.html
@@ -60,6 +72,10 @@ class Workhead:
             return '%.1f Million' % limit
 
     def display_text(self):
+        """
+        String representation of the workhead instance
+        :return: String
+        """
         result = [workhead_display_text(self.workhead)]
         result.append("\tExpiry Date:")
         result.append("\t%s" % self.expiry_date)
@@ -70,6 +86,11 @@ class Workhead:
 
 
 def workhead_display_text(workhead):
+    """
+    Tells Title, description of the given workhead
+    :param workhead: Workhead of contractor
+    :return: String
+    """
     result = []
     workhead_info = data_holder.contractor_registry[workhead]
     result.append('\tWorkhead Code:')

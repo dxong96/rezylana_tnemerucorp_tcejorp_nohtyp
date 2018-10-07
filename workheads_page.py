@@ -2,7 +2,6 @@ import Tkinter as tk
 
 import data_holder
 import workhead
-import function_10
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from output_text_box import OutputTextBox
@@ -54,10 +53,10 @@ class WorkheadsPage(tk.Toplevel):
 
     def show_workhead_for_categories_piechart(self, workhead_category):
         if workhead_category not in self.workhead_graph_data:
-            workheads = function_10.get_workheads_for_category(workhead_category)
+            workheads = data_holder.get_workheads_for_category(workhead_category)
             workhead_contractor_counts = []
             for wh in workheads:
-                number_of_contractors = len(function_10.get_contractors_by_workhead(wh))
+                number_of_contractors = len(data_holder.get_contractors_by_workhead(wh))
                 workhead_contractor_counts.append(number_of_contractors)
 
             self.workhead_graph_data[workhead_category] = (workheads, workhead_contractor_counts)
@@ -91,7 +90,7 @@ class WorkheadsPage(tk.Toplevel):
     def set_workheads_in_listbox(self, workhead_category):
         self.listbox.delete(0, self.listbox.size())
         self.listbox.insert(0, 'back')
-        self.listbox.insert(tk.END, *function_10.get_workheads_for_category(workhead_category))
+        self.listbox.insert(tk.END, *data_holder.get_workheads_for_category(workhead_category))
         self.output_tb.set_output(workhead.WORKHEAD_CATEGORIES[workhead_category])
         self.show_workhead_for_categories_piechart(workhead_category)
         self.list_state = 'w'
@@ -99,7 +98,7 @@ class WorkheadsPage(tk.Toplevel):
     def set_contractors_in_listbox(self, wh):
         self.listbox.delete(0, self.listbox.size())
         self.listbox.insert(0, 'back')
-        contractor_names = map(lambda c: c.company_name, function_10.get_contractors_by_workhead(wh))
+        contractor_names = map(lambda c: c.company_name, data_holder.get_contractors_by_workhead(wh))
         self.listbox.insert(tk.END, *contractor_names)
         self.output_tb.set_output(workhead.workhead_display_text(wh))
         self.list_state = wh
