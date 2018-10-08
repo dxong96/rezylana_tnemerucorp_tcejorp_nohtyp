@@ -26,6 +26,9 @@ import function_12
 
 
 class MainPage(tk.Frame):
+    """
+    Starting of the main frame of the program
+    """
     def __init__(self, parent):
         tk.Frame.__init__(self, parent)
 
