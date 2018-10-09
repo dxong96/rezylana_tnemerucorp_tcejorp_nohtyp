@@ -31,21 +31,23 @@ class MainPage(tk.Frame):
     """
     def __init__(self, parent):
         tk.Frame.__init__(self, parent)
+        self.configure(bg="grey")
 
         # title START
-        title_frame = tk.Frame(self, bd=10, bg="red")
+        title_frame = tk.Frame(self, bd=10, bg="black")
         title_frame.grid(row=0, column=0, columnspan=12, sticky=(tk.W, tk.E))
-        heading = tk.Label(title_frame, text="Welcome to Python Project 2k18", font=("arial", 20, "bold"), fg="black")
+        heading = tk.Label(title_frame, text="Your One-Stop Search Program", font=("arial", 20, "bold"), fg="black")
         heading.grid(row=0, column=1)
         title_frame.grid_columnconfigure(0, weight=1)  # fill up empty spaces to left of heading
         title_frame.grid_columnconfigure(2, weight=1)  # fill up empty spaces to right of heading
         # title END
 
         # contractors sheet input START
-        contractors_input_frame = tk.Frame(self)
+        contractors_input_frame = tk.Frame(self, bd=10, bg="grey")
         contractors_input_frame.grid(row=1, column=0, sticky=tk.W)
 
-        contractors_input_label = tk.Label(contractors_input_frame, text="Select your contractors sheet: ")
+        contractors_input_label = tk.Label(contractors_input_frame, text="Select your contractors sheet: ",
+                                           bg="grey", fg="white")
         contractors_input_label.grid(row=0, column=0)
 
         contractors_input_button = tk.Button(contractors_input_frame, text="Browse")
@@ -54,10 +56,11 @@ class MainPage(tk.Frame):
         # contractors sheet input END
 
         # procurements sheet input START
-        gov_procurements_input_frame = tk.Frame(self)
+        gov_procurements_input_frame = tk.Frame(self, bd=10, bg="grey")
         gov_procurements_input_frame.grid(row=2, column=0, sticky=tk.W)
 
-        gov_procurements_input_label = tk.Label(gov_procurements_input_frame, text="Select your procurements sheet: ")
+        gov_procurements_input_label = tk.Label(gov_procurements_input_frame, text="Select your procurements sheet: ",
+                                           bg="grey", fg="white")
         gov_procurements_input_label.grid(row=0, column=0)
 
         gov_procurements_input_button = tk.Button(gov_procurements_input_frame, text="Browse")
@@ -72,7 +75,7 @@ class MainPage(tk.Frame):
         basic_functions_label = self.create_title_label("Basic functions")
         basic_functions_label.grid(row=3, sticky=tk.W)
 
-        basic_function_row = tk.Frame(self)
+        basic_function_row = tk.Frame(self, bd=10, bg="grey")
         basic_function_row.grid(row=4, column=0, sticky=tk.W)
 
         function2_input_button = tk.Button(basic_function_row, text="Function 2")
@@ -192,16 +195,10 @@ class MainPage(tk.Frame):
         basic_stats_label.grid(row=7, column=0, sticky=tk.W)
         self.output_tb = OutputTextBox(self)
         self.output_tb.grid(row=8, column=0, sticky=(tk.W, tk.E))
-        self.output_tb.output_text.configure(height=15)
+        self.output_tb.output_text.configure(height=15, bd=10, bg="grey", fg="white")
 
         search_input_frame = tk.Frame(self)
         search_input_frame.grid(row=9, column=0, sticky=tk.W)
-
-        search_box = tk.Entry(search_input_frame)
-        search_box.grid(row=0, column=0, sticky=tk.W)
-        search_button = tk.Button(search_input_frame, text="Search")
-        search_button.grid(row=0, column=1)
-        search_button.bind('<Button-1>', self.search_clicked)
 
         data_holder.load_contractor_registry()
 
@@ -218,7 +215,7 @@ class MainPage(tk.Frame):
 
     def create_title_label(self, text):
         """ A helper method to create a 'Title' Label with the 'Title' configuration '"""
-        return tk.Label(self, text=text, font='Helvetica 10 bold')
+        return tk.Label(self, text=text, font='Helvetica 10 bold', bg="grey", fg="white")
 
     # Click listeners START
     def handle_sheet_loading(self, func):
@@ -273,9 +270,6 @@ class MainPage(tk.Frame):
             MessageDialog(self, "Load contractors and procurements first!")
             return
         self.output_tb.set_output(function_4())
-
-    def search_clicked(self, e):
-        print "search"
 
     def function_5_clicked(self, e):
         """
