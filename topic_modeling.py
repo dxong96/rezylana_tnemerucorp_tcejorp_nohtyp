@@ -6,7 +6,7 @@ import gensim
 from nltk.stem import WordNetLemmatizer, SnowballStemmer
 from gensim.utils import simple_tokenize
 
-import nltk
+from nltk import download as nltk_download
 import os
 import json
 
@@ -58,7 +58,7 @@ class TopicModeller:
         Dump it to a cache json file
         :return: None
         """
-        nltk.download('wordnet')
+        nltk_download('wordnet')
         processed_tender_descriptions = map(lambda p: self.preprocess(p.tender_description), data_holder.procurements)
         dictionary = gensim.corpora.Dictionary(processed_tender_descriptions)
 
