@@ -146,13 +146,13 @@ class Procurement:
             attribute_name = self.AUTO_ATTRIBUTES[i]
             setattr(self, attribute_name, contractor_sequence[i])
 
+        self.awarded_amt = float(self.awarded_amt)
+
         if self.awarded_amt > 0:
             self.awarded = True
         else:
             self.awarded = False
             self.supplier_name = None
-
-        self.awarded_amt = float(self.awarded_amt)
 
     def display_text(self):
         """
