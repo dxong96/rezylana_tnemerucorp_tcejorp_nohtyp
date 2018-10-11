@@ -31,23 +31,23 @@ class MainPage(tk.Frame):
     """
     def __init__(self, parent):
         tk.Frame.__init__(self, parent)
-        self.configure(bg="grey")
+        self.configure(bg="black")
 
         # title START
         title_frame = tk.Frame(self, bd=10, bg="black")
         title_frame.grid(row=0, column=0, columnspan=12, sticky=(tk.W, tk.E))
-        heading = tk.Label(title_frame, text="Your One-Stop Search Program", font=("arial", 20, "bold"), fg="black")
+        heading = tk.Label(title_frame, text="Government Procurement Analysis System", font=("arial", 20, "bold"), fg="black")
         heading.grid(row=0, column=1)
         title_frame.grid_columnconfigure(0, weight=1)  # fill up empty spaces to left of heading
         title_frame.grid_columnconfigure(2, weight=1)  # fill up empty spaces to right of heading
         # title END
 
         # contractors sheet input START
-        contractors_input_frame = tk.Frame(self, bd=10, bg="grey")
+        contractors_input_frame = tk.Frame(self, bd=10, bg="black")
         contractors_input_frame.grid(row=1, column=0, sticky=tk.W)
 
         contractors_input_label = tk.Label(contractors_input_frame, text="Select your contractors sheet: ",
-                                           bg="grey", fg="white")
+                                           bg="black", fg="white")
         contractors_input_label.grid(row=0, column=0)
 
         contractors_input_button = tk.Button(contractors_input_frame, text="Browse")
@@ -56,11 +56,11 @@ class MainPage(tk.Frame):
         # contractors sheet input END
 
         # procurements sheet input START
-        gov_procurements_input_frame = tk.Frame(self, bd=10, bg="grey")
+        gov_procurements_input_frame = tk.Frame(self, bd=10, bg="black")
         gov_procurements_input_frame.grid(row=2, column=0, sticky=tk.W)
 
         gov_procurements_input_label = tk.Label(gov_procurements_input_frame, text="Select your procurements sheet: ",
-                                           bg="grey", fg="white")
+                                           bg="black", fg="white")
         gov_procurements_input_label.grid(row=0, column=0)
 
         gov_procurements_input_button = tk.Button(gov_procurements_input_frame, text="Browse")
@@ -72,17 +72,15 @@ class MainPage(tk.Frame):
 
         # Function 2 List down the total amount of procurement for each government sectors
         # and allow users to order those sectors either by ascending order or descending order.
-        basic_functions_label = self.create_title_label("Basic functions")
-        basic_functions_label.grid(row=3, sticky=tk.W)
 
-        basic_function_row = tk.Frame(self, bd=10, bg="grey")
+        basic_function_row = tk.Frame(self, bd=10, bg="black")
         basic_function_row.grid(row=4, column=0, sticky=tk.W)
 
-        function2_input_button = tk.Button(basic_function_row, text="Function 2")
+        function2_input_button = tk.Button(basic_function_row, text="Save as text file")
         function2_input_button.grid(row=0, column=0)
         function2_input_button.bind('<Button-1>', self.function_2_clicked)
 
-        function3_input_button = tk.Menubutton(basic_function_row, text="Function 3", relief=tk.RAISED)
+        function3_input_button = tk.Menubutton(basic_function_row, text="Total awarded amount", relief=tk.RAISED)
         function3_input_button.grid(row=0, column=1)
         function3_input_button.menu = tk.Menu(function3_input_button)
         function3_input_button.menu.add_command(label='Ascending', command=self.function_3_clicked(True))
@@ -91,7 +89,7 @@ class MainPage(tk.Frame):
 
         # Function 4 List down the awarded vendors which are the registered contractors.
 
-        function4_input_button = tk.Button(basic_function_row, text="Function 4")
+        function4_input_button = tk.Button(basic_function_row, text="Awarded Registered Contractors")
         function4_input_button.grid(row=0, column=2)
         function4_input_button.bind('<Button-1>', self.function_4_clicked)
         # Function 5 Identify  one  way  to  categorize  the  government  agency  and see
@@ -102,7 +100,7 @@ class MainPage(tk.Frame):
         function5_input_button.bind('<Button-1>', self.function_5_clicked)
 
         # Function 6
-        function6_input_button = tk.Menubutton(basic_function_row, text="Function 6", relief=tk.RAISED)
+        function6_input_button = tk.Menubutton(basic_function_row, text="Total Expenditure", relief=tk.RAISED)
         function6_input_button.grid(row=0, column=4)
         # function6_input_button.bind('<Button-1>', self.function_6_clicked)
 
@@ -191,11 +189,11 @@ class MainPage(tk.Frame):
         lda_function_button.grid(sticky=(tk.W, tk.E), row=6)
         lda_function_button.bind('<Button-1>', self.lda_function_clicked)
 
-        basic_stats_label = self.create_title_label("Output Text")
+        basic_stats_label = self.create_title_label("\nINFORMATION:")
         basic_stats_label.grid(row=7, column=0, sticky=tk.W)
         self.output_tb = OutputTextBox(self)
         self.output_tb.grid(row=8, column=0, sticky=(tk.W, tk.E))
-        self.output_tb.output_text.configure(height=15, bd=10, bg="grey", fg="white")
+        self.output_tb.output_text.configure(height=15, bd=10, bg="white", fg="black")
 
         search_input_frame = tk.Frame(self)
         search_input_frame.grid(row=9, column=0, sticky=tk.W)
@@ -215,7 +213,7 @@ class MainPage(tk.Frame):
 
     def create_title_label(self, text):
         """ A helper method to create a 'Title' Label with the 'Title' configuration '"""
-        return tk.Label(self, text=text, font='Helvetica 10 bold', bg="grey", fg="white")
+        return tk.Label(self, text=text, font='Helvetica 10 bold', bg="black", fg="white")
 
     # Click listeners START
     def handle_sheet_loading(self, func):
