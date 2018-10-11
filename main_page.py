@@ -72,8 +72,6 @@ class MainPage(tk.Frame):
 
         # Function 2 List down the total amount of procurement for each government sectors
         # and allow users to order those sectors either by ascending order or descending order.
-        basic_functions_label = self.create_title_label("Basic functions")
-        basic_functions_label.grid(row=3, sticky=tk.W)
 
         basic_function_row = tk.Frame(self, bd=10, bg="black")
         basic_function_row.grid(row=4, column=0, sticky=tk.W)
