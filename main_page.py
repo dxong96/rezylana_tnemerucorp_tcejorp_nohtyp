@@ -95,7 +95,7 @@ class MainPage(tk.Frame):
         # Function 5 Identify  one  way  to  categorize  the  government  agency  and see
         # # how much money the government spend on each category.These categories can be like IHL(institute of higher learning),transportation agency etc.
 
-        function5_input_button = tk.Button(basic_function_row, text="Function 5")
+        function5_input_button = tk.Button(basic_function_row, text="Top 5 contractors")
         function5_input_button.grid(row=0, column=3)
         function5_input_button.bind('<Button-1>', self.function_5_clicked)
 
