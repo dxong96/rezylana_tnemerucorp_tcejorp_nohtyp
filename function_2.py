@@ -11,7 +11,7 @@ def Create_Folder():
         if not os.path.exists(folder):
             os.makedirs(folder)                                                                       #If folder does not exists then create folder
     except OSError:
-        tkMessageBox.showinfo("Error", 'Error creating directory. ' + folder)                         #Error message dialog box pop out if there is error in creating folder
+        tkMessageBox.showerror("Error", 'Error creating directory. ' + folder)                         #Error message dialog box pop out if there is error in creating folder
 
 def save():
     '''Create Govern procurements folder & save the procurements details for agency into txt file in Govern Procurement folder'''
@@ -31,4 +31,4 @@ def save():
         tkMessageBox.showinfo("Message", "File save to Govern Procurement folder successful")         #Message dialog box pop out when file save successful
 
     except:
-        tkMessageBox.showinfo("Error", "Unable to save file")                                         #Error message dialog box pop out when file was not save successful
+        tkMessageBox.showerror("Error", "Unable to save file")                                         #Error message dialog box pop out when file was not save successful
