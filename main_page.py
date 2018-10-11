@@ -121,7 +121,7 @@ class MainPage(tk.Frame):
 
         function6_input_button['menu'] = function6_input_button.menu
 
-        advance_functions_label = self.create_title_label("Advance functions")
+        advance_functions_label = self.create_title_label("")
         advance_functions_label.grid(row=5, sticky=tk.W)
         advance_functions_row = tk.Frame(self)
         advance_functions_row.grid(row=6, sticky=tk.W)
