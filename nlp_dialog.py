@@ -29,7 +29,7 @@ class ProcurementTopicsDialog(tk.Toplevel):
         self.output_tb.grid(sticky=(tk.W, tk.E), row=1)
         self.output_tb.output_text.configure(height=15)
 
-        self.retrain_button = tk.Button(self, text="Relaod the topics (takes awhile)")
+        self.retrain_button = tk.Button(self, text="Reload the topics (takes awhile)")
         self.retrain_button.grid(sticky=tk.W, row=2)
         self.retrain_button.bind('<Button-1>', self.retrain_button_clicked)
 
