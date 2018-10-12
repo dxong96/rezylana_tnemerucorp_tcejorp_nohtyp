@@ -65,14 +65,14 @@ def total_procurement_dictionary1():
 
 
 def sorted_total_procurement_dictionary1(asc):
-    """This function sorts the total awarded amount in ascending/descending order depending on user's request."""
+    """This function sorts the total awarded procurement amount in ascending/descending order depending on user's request."""
     global sorted_total_procurement_dictionary_ascending
     global sorted_total_procurement_dictionary_descending
     try:
         total_count=0
         signify_end="------END OF CURRENT DATA------"
         if asc==True:
-            string_rep="Data recorded below indicates the sorted total awarded amount for each agency in ascending order:"
+            string_rep="Data recorded below indicates the sorted total awarded procurement amount for each agency in ascending order:"
             sorted_total_procurement_dictionary_ascending= sorted(total_procurement_dictionary.items(), key=operator.itemgetter(1) ,reverse=False)
             for k,v in sorted_total_procurement_dictionary_ascending:
                 total_count+=1
@@ -81,7 +81,7 @@ def sorted_total_procurement_dictionary1(asc):
                     string_rep = string_rep +"\n" + "%050s" %(signify_end)
                     return string_rep
         elif asc == False:
-            string_rep="Data recorded below indicates the sorted total awarded amount for each agency in descending order:"
+            string_rep="Data recorded below indicates the sorted total awarded procurement amount for each agency in descending order:"
             sorted_total_procurement_dictionary_descending= sorted(total_procurement_dictionary.items(), key=operator.itemgetter(1) ,reverse=True)
             for k,v in sorted_total_procurement_dictionary_descending:
                 total_count+=1

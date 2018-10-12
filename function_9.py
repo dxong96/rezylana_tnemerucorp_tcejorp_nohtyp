@@ -7,9 +7,9 @@ sorted_min_procurement_dictionary_ascending={}
 sorted_min_procurement_dictionary_descending={}
 
 def agency_min_procurement():
-    """This function creates a dictionary storing the minimum awarded amount for each agency."""
+    """This function creates a dictionary storing the minimum awarded procurement amount for each agency."""
     global min_procurement_dictionary
-    string_rep="Data recorded below indicates the minimum procurement amount for each agency:"
+    string_rep="Data recorded below indicates the minimum awarded procurement amount for each agency:"
     count=0
     signify_end="------END OF CURRENT DATA------"
     try:
@@ -37,7 +37,7 @@ def agency_min_procurement():
         return "Error with value/import/index file."
 
 def sorted_min_procurement(asc):
-    """This functions sorts the minimum awarded amount dictionary in ascending/descending order depending on the user's request."""
+    """This functions sorts the minimum awarded procurement amount dictionary in ascending/descending order depending on the user's request."""
     global min_procurement_dictionary
     global sorted_min_procurement_dictionary_ascending
     global sorted_min_procurement_dictionary_descending
@@ -45,7 +45,7 @@ def sorted_min_procurement(asc):
     signify_end="------END OF CURRENT DATA------"
     try:
         if asc==True:
-            string_rep ="Data recorded below indicates the minimum procurement amount sorted in ascending order for each agency:"
+            string_rep ="Data recorded below indicates the minimum awarded procurement amount sorted in ascending order for each agency:"
             sorted_min_procurement_dictionary_ascending=sorted(min_procurement_dictionary.items(), key=operator.itemgetter(1) ,reverse=False)
             for k,v in sorted_min_procurement_dictionary_ascending:
                 total_count+=1
@@ -54,7 +54,7 @@ def sorted_min_procurement(asc):
                     string_rep = string_rep +"\n" + "%050s" %(signify_end)
                     return string_rep
         elif asc== False:
-            string_rep ="Data recorded below indicates the minimum procurement amount sorted in descending order for each agency:"
+            string_rep ="Data recorded below indicates the minimum awarded procurement amount sorted in descending order for each agency:"
             sorted_min_procurement_dictionary_descending=sorted(min_procurement_dictionary.items(), key=operator.itemgetter(1), reverse= True)
             for k,v in sorted_min_procurement_dictionary_descending:
                 total_count+=1

@@ -8,9 +8,9 @@ sorted_max_procurement_dictionary_descending={}
 
 
 def agency_max_procurement():
-    """This function creates a dictionary storing the max awarded amount for each agency"""
+    """This function creates a dictionary storing the max awarded procurement amount for each agency"""
     global max_procurement_dictionary
-    string_rep="Data recorded below indicates the maximum procurement amount for each agency:"
+    string_rep="Data recorded below indicates the maximum awrded procurement amount for each agency:"
     count =0
     signify_end="------END OF CURRENT DATA------"
     try:
@@ -38,7 +38,7 @@ def agency_max_procurement():
         return "Error with value/import/index file."
 
 def sorted_max_procurement(asc):
-    """This function sorts the max awarded amount in ascending/descending order depending on the user's request."""
+    """This function sorts the max awarded procurement amount in ascending/descending order depending on the user's request."""
     global max_procurement_dictionary
     global sorted_max_procurement_dictionary_ascending
     global sorted_max_procurement_dictionary_descending
@@ -46,7 +46,7 @@ def sorted_max_procurement(asc):
     signify_end="------END OF CURRENT DATA------"
     try:
         if asc==True:
-            string_rep ="Data recorded below indicates the max procurement amount sorted in ascending order for each agency:"
+            string_rep ="Data recorded below indicates the maximum awarded procurement amount sorted in ascending order for each agency:"
             sorted_max_procurement_dictionary_ascending=sorted(max_procurement_dictionary.items(), key=operator.itemgetter(1) ,reverse=False)
             for k,v in sorted_max_procurement_dictionary_ascending:
                 total_count+=1
@@ -55,7 +55,7 @@ def sorted_max_procurement(asc):
                     string_rep = string_rep +"\n" + "%050s" %(signify_end)
                     return string_rep
         elif asc==False:
-            string_rep ="Data recorded below indicates the max procurement amount sorted in descending order for each agency:"
+            string_rep ="Data recorded below indicates the maximum awarded procurement amount sorted in descending order for each agency:"
             sorted_max_procurement_dictionary_descending=sorted(max_procurement_dictionary.items(), key=operator.itemgetter(1), reverse= True)
             for k,v in sorted_max_procurement_dictionary_descending:
                 total_count+=1

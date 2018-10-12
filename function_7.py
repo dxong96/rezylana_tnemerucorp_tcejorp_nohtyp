@@ -62,7 +62,7 @@ def average_procurement1():
         return "Error with value/import/index file."
 
 def sorted_average_procurement(asc):
-    """This function sorts the average procurement amount in ascending/descending order depending on the user's request."""
+    """This function sorts the average awarded procurement amount in ascending/descending order depending on the user's request."""
     global average_procurement
     global sorted_average_procurement_dictionary_ascending
     global sorted_average_procurement_dictionary_descending
@@ -70,7 +70,7 @@ def sorted_average_procurement(asc):
     signify_end="------END OF CURRENT DATA------"
     try:
         if asc==True:
-            string_rep="Data recorded below indicates the sorted average awarded amount for each agency in ascending order:"
+            string_rep="Data recorded below indicates the sorted average awarded procurement amount for each agency in ascending order:"
             sorted_average_procurement_dictionary_ascending=sorted(average_procurement.items(), key=operator.itemgetter(1) ,reverse=False)
             for k,v in sorted_average_procurement_dictionary_ascending:
                 total_count+=1
@@ -79,7 +79,7 @@ def sorted_average_procurement(asc):
                     string_rep = string_rep +"\n" + "%050s" %(signify_end)
                     return string_rep
         elif asc== False:
-            string_rep="Data recorded below indicates the sorted average awarded amount for each agency in descending order:"
+            string_rep="Data recorded below indicates the sorted average awarded procurement amount for each agency in descending order:"
             sorted_average_procurement_dictionary_descending=sorted(average_procurement.items(), key=operator.itemgetter(1), reverse= True)
             for k,v in sorted_average_procurement_dictionary_descending:
                 total_count+=1
