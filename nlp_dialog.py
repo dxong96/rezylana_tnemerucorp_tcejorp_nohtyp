@@ -21,18 +21,22 @@ class ProcurementTopicsDialog(tk.Toplevel):
         self.minsize(300, 100)
         self.title("Procurements by topics...")
 
+        # create a progress bar that never completes
         self.progress_bar = ttk.Progressbar(self, orient='horizontal', mode='indeterminate')
         self.progress_bar.grid(sticky=(tk.W, tk.E), row=0)
         self.progress_bar.start(50)
 
+        # add the output text box to UI
         self.output_tb = OutputTextBox(self)
         self.output_tb.grid(sticky=(tk.W, tk.E), row=1)
         self.output_tb.output_text.configure(height=15)
 
+        # add re train button to UI
         self.retrain_button = tk.Button(self, text="Reload the topics (takes awhile)")
         self.retrain_button.grid(sticky=tk.W, row=2)
         self.retrain_button.bind('<Button-1>', self.retrain_button_clicked)
 
+        # pause main UI
         self.grab_set()
         self.queue_task()
 
@@ -44,6 +48,7 @@ class ProcurementTopicsDialog(tk.Toplevel):
         self.queue = Queue.Queue()
         ThreadedTask(self.queue, self.topic_modeller).start()
         self.master.after(100, self.process_queue)
+        # disable the re train model button
         self.retrain_button.configure(state=tk.DISABLED)
 
     def retrain_button_clicked(self, e):
@@ -53,10 +58,12 @@ class ProcurementTopicsDialog(tk.Toplevel):
         :return: None
         """
         button_state = self.retrain_button['state']
+        # checks if button is disabled
         if button_state == tk.DISABLED:
             return
 
         self.topic_modeller.clear_cache_file()
+        # add the progress bar back
         self.progress_bar.grid()
         self.output_tb.clear_output()
         self.queue_task()
@@ -79,13 +86,19 @@ class ProcurementTopicsDialog(tk.Toplevel):
                     topic_procurement_text.append('\t===============================')
 
             self.output_tb.set_output('\n'.join(topic_procurement_text))
+            # hide the progress bar
             self.progress_bar.grid_remove()
+            # re-enable the progress bar
             self.retrain_button.config(state=tk.NORMAL)
         except Queue.Empty:
+            # keep checking if training is complete
             self.master.after(100, self.process_queue)
 
 
 class ThreadedTask(threading.Thread):
+    """
+    The class contains the code that is to be run in the background also know as another thread
+    """
     def __init__(self, queue, topic_modeller):
         threading.Thread.__init__(self)
         self.topic_modeller = topic_modeller

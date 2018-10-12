@@ -40,12 +40,15 @@ def init_data():
     unreg_company_names = []
 
     for procurement in data_holder.procurements:
+        # skip not awarded procurement
         if not procurement.awarded:
             continue
 
+        # group total procurements' awarded amount by company
         company_awarded_amt_dict.setdefault(procurement.supplier_name, 0)
         company_awarded_amt_dict[procurement.supplier_name] += procurement.awarded_amt
 
+        # if supplier is registered
         if procurement.supplier_name in contractor_dict:
             _amt_awarded_to_reg += procurement.awarded_amt
             reg_company_names.append(procurement.supplier_name)
@@ -53,9 +56,10 @@ def init_data():
             _amt_awarded_to_unreg += procurement.awarded_amt
             unreg_company_names.append(procurement.supplier_name)
 
+    # sorted the company names by total procurement amount
     sorted_company_names = sorted(company_awarded_amt_dict.keys(),
                                   key=company_awarded_amt_dict.get,
-                                  reverse=True)  # sort keys in descending order based on value of a given key
+                                  reverse=True)
     # create a list of tuples containing (company_name, total procurement amount)
     _top5_contractors_and_amount = map(lambda c: (c, company_awarded_amt_dict[c]), sorted_company_names[:5])
     _reg_contractors_and_amount = map(lambda c: (c, company_awarded_amt_dict[c]), reg_company_names)

@@ -59,29 +59,38 @@ class TopicModeller:
         :return: None
         """
         nltk_download('wordnet')
+        # remove the unwanted words for all tender description
         processed_tender_descriptions = map(lambda p: self.preprocess(p.tender_description), data_holder.procurements)
         dictionary = gensim.corpora.Dictionary(processed_tender_descriptions)
 
+        # filter away words that appears more than 25% of the time
         dictionary.filter_extremes(no_above=0.25)
-        bow_corpus = [dictionary.doc2bow(doc) for doc in processed_tender_descriptions]
-        print len(bow_corpus)
 
+        # create a list of tuple containing the word index and the number of times it appeared
+        bow_corpus = [dictionary.doc2bow(doc) for doc in processed_tender_descriptions]
+
+        # create the LDA model
         lda_model = gensim.models.LdaMulticore(bow_corpus, num_topics=10, id2word=dictionary, passes=2, workers=2)
 
         topic_to_procurements = []
+        # create an list of 10 empty list
         for i in range(10):
             topic_to_procurements.append([])
 
+        # group similar tender numbers together
         for p in data_holder.procurements:
             unseen_document = p.tender_description
             bow_vector = dictionary.doc2bow(self.preprocess(unseen_document))
 
+            # sort by descending probability, highest first
             sorted_probabilities = sorted(lda_model[bow_vector], key=lambda tup: -1 * tup[1])
             topic_with_highest_prob = sorted_probabilities[0]
             topic_index = topic_with_highest_prob[0]
+            # put the tender number into the topic with the highest probability
             topic_to_procurements[topic_index].append(p.tender_no)
 
         self.group_topic_procurements(topic_to_procurements)
+        # save the cached result as json
         with open(self.CACHE_JSON_FILE_NAME, 'w') as outfile:
             json.dump(topic_to_procurements, outfile)
 
@@ -91,6 +100,7 @@ class TopicModeller:
         Then return top 12 for the top most common words
         :return: List of String
         """
+        # check is it is already computed
         if self.cache_most_common_words is None:
             word_counts = {}
             for p in data_holder.procurements:
@@ -103,6 +113,8 @@ class TopicModeller:
 
             sorted_keys = sorted(word_counts.keys(), key=word_counts.get, reverse=True)
             self.cache_most_common_words = sorted_keys[:12]
+
+        # return computed result
         return self.cache_most_common_words
 
     def needs_training(self):
@@ -123,12 +135,13 @@ class TopicModeller:
         self.grouped_topic_procurements = []
         for i in range(len(tender_nos_by_topics)):
             topics = tender_nos_by_topics[i]
+            # convert the list of tender numbers to procurements object
             procurements = map(lambda t: tender_no_to_procurements[t][0], topics)
             self.grouped_topic_procurements.append(procurements)
 
     def load_cache_file(self):
         """
-        Load the cached file into the class
+        Load the cached json file into the class
         :return: None
         """
         with open(self.CACHE_JSON_FILE_NAME, 'r') as f:
